@@ -35,9 +35,13 @@
 
 
     @Scripts.Render("~/bundles/theme-core")
-    @Scripts.Render("~/bundles/sticky")
+    @*@Scripts.Render("~/bundles/sticky")*@
+
     @Scripts.Render("~/bundles/theme-app")
     @Scripts.Render("~/bundles/navbar-sticky")
+    @Scripts.Render("~/bundles/sweet-alert")
+
+    @Scripts.Render("~/bundles/common")
 
     @RenderSection("scripts", required: false)
 </body>

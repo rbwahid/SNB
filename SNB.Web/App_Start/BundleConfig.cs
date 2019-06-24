@@ -59,13 +59,45 @@ namespace SNB.Web
             bundles.Add(new ScriptBundle("~/bundles/dashboard").Include(
                       "~/Plugins/global_assets/js/demo_pages/dashboard.js"));
 
+            // Login Script---
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                      "~/Plugins/global_assets/js/demo_pages/login.js"));
+
+            // Uniform Script---
+            bundles.Add(new ScriptBundle("~/bundles/uniform").Include(
+                      "~/Plugins/global_assets/js/plugins/forms/styling/uniform.min.js"));
+
             // Sticky Script---
-            bundles.Add(new ScriptBundle("~/bundles/sticky").Include(
-                      "~/Plugins/global_assets/js/plugins/ui/sticky.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/sticky").Include(
+            //          "~/Plugins/global_assets/js/plugins/ui/sticky.min.js"));
 
             // NavBar Sticky Script---
             bundles.Add(new ScriptBundle("~/bundles/navbar-sticky").Include(
+                      "~/Plugins/global_assets/js/plugins/ui/sticky.min.js",
                       "~/Plugins/global_assets/js/demo_pages/navbar_multiple_sticky.js"));
+
+            // Bootstrap Date Time Scripts---
+            bundles.Add(new ScriptBundle("~/bundles/daterange-picker").Include(
+                "~/Plugins/global_assets/js/plugins/ui/moment/moment.min.js",
+                "~/Plugins/global_assets/js/plugins/pickers/daterangepicker.js",
+                "~/Plugins/global_assets/js/plugins/pickers/pickadate/picker.js",
+                "~/Plugins/global_assets/js/plugins/pickers/pickadate/picker.date.js",
+                "~/Plugins/global_assets/js/plugins/pickers/pickadate/picker.time.js",
+                "~/Scripts/custom-date-format.js"));
+
+            // Bootstrap File Scripts---
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-file").Include(
+                      "~/Plugins/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js",
+                      "~/Plugins/global_assets/js/demo_pages/uploader_bootstrap.js"));
+
+            // Sweet Alert Scripts---
+            bundles.Add(new ScriptBundle("~/bundles/sweet-alert").Include(
+                "~/Plugins/global_assets/js/plugins/notifications/sweet_alert.min.js",
+                "~/Plugins/global_assets/js/demo_pages/extra_sweetalert.js"));
+
+            // Ajax Call Script---
+            bundles.Add(new ScriptBundle("~/bundles/ajax-call").Include(
+                "~/Scripts/ajax-call.js"));
 
             // Common Script---
             bundles.Add(new ScriptBundle("~/bundles/common").Include(

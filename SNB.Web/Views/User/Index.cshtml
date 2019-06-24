@@ -1,0 +1,124 @@
+﻿@using System.Collections
+@using SNB.Web.Models
+@model IEnumerable<SNB.Entities.User>
+
+@{
+    ViewBag.Title = "User";
+    var sl = 1;
+}
+
+<div class="content">
+    <div class="card border-teal">
+        <div class="card-header header-elements-inline bg-teal">
+            <h5 class="card-title"><strong>User</strong></h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a href="@Url.Action("Register","User")" class="list-icons-item text-white" title="Add User"><i class="icon-plus3"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="hr-mar-reduce" />
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-xs table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                                    <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Address)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Mobile)</th>
+                                    <th>@Html.DisplayNameFor(model => model.RoleId)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="serial">@(sl++)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Mobile)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.UserRole.RoleName)</td>
+                                        <td>
+                                            <div class="list-icons">
+                                                <a href="#" onclick="details_Data('@item.Id')" class="list-icons-item text-info-600"><i class="icon-eye"></i></a>
+                                                <a href="@Url.Action("Edit","User", new { id = item.Id })" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                <a href="#" onclick="delete_Data('@item.Id')" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                <a href="#" onclick="reset_Password('@item.Id')" class="list-icons-item text-orange">
+                                                    <i class="icon-unlocked2 mr-3 icon-1x"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Details Modal -->
+<div id="detailsModal" class="modal fade border-teal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-teal">
+            <div class="modal-header bg-teal-300">
+                <h5 class="modal-title">User Details</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body" id="detailsModalContent">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn bg-teal-600" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Details Modal -->
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-confirm")
+    @Scripts.Render("~/bundles/ajax-call")
+
+    <script>
+        function delete_Data(id) {
+            var url = '@Url.Action("Delete", "User")';
+            var paramData = { id: id };
+            delete_confirm(url, paramData);
+        }
+
+        function details_Data(id) {
+            var url = '@Url.Action("Details", "User")';
+            var paramData = { id: id };
+            ajaxCallModal(url, paramData, "renderUserDetailsEntryLoad")
+        }
+
+        function renderUserDetailsEntryLoad(data) {
+            $("#detailsModalContent").html(data);
+            $("#detailsModal").modal("show");
+        }
+
+        function reset_Password(id) {
+            var url = '@Url.Action("ResetPassword", "User")';
+            var paramData = { id: id };
+            reset_password_confirm(url, paramData);
+        }
+
+    </script>
+}
+
