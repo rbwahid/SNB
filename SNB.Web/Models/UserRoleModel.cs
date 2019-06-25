@@ -98,24 +98,7 @@ namespace SNB.Web.Models
 
             new RoleTaskCheckBoxModel {PermissionName="User_Configuration", PermissionCategory = "Configuration"},
             new RoleTaskCheckBoxModel {PermissionName="Role_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="City_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Container_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Country_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Brand_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Group_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Port_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Product_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Port_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Product_Configuration", PermissionCategory = "Configuration"},
-            new RoleTaskCheckBoxModel {PermissionName="Payment_Terms_Configuration", PermissionCategory = "Configuration"},
 
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Forecast", PermissionCategory = "Forecast"},
-            new RoleTaskCheckBoxModel {PermissionName="RA_User_Forecast", PermissionCategory = "Forecast"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_Order", PermissionCategory = "Order"},
-            new RoleTaskCheckBoxModel {PermissionName="RA_User_Order", PermissionCategory = "Order"},
-            new RoleTaskCheckBoxModel {PermissionName="Customer_PI", PermissionCategory = "ProformaInvoice"},
-            new RoleTaskCheckBoxModel {PermissionName="RA_User_PI", PermissionCategory = "ProformaInvoice"},
         };
 
 

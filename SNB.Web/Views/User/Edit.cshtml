@@ -12,11 +12,11 @@
             <h5 class="card-title"><strong>User</strong></h5>
             <div class="header-elements">
                 <div class="list-icons">
-                    @*<a class="list-icons-item"><i class="icon-plus3"></i></a>*@
+                    <a href="@Url.Action("Index","User")" class="list-icons-item"><i class="icon-arrow-left52"></i></a>
                 </div>
             </div>
         </div>
-        <hr class="hr-mar-reduce" />
+        @*<hr class="hr-mar-reduce" />*@
         @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "userRegisterEditForm" }))
         {
             @Html.AntiForgeryToken()
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-3">User Profile</label>
+                            <label class="col-form-label col-lg-3">@*User Profile*@</label>
                             <div class="col-lg-6">
                                 @if (Model.ImageFile != string.Empty && Model.ImageFile != null)
                                 {
@@ -137,7 +137,7 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrapFileUploader")
+    @Scripts.Render("~/bundles/bootstrap-file")
     <script>
         function deleteImageFunc() {
             $("#imageShow").hide();

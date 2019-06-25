@@ -9,16 +9,16 @@
 
 
 <div class="content">
-    <div class="card">
-        <div class="card-header header-elements-inline">
+    <div class="card border-teal">
+        <div class="card-header header-elements-inline bg-teal">
             <h3 class="card-title"><strong>User Role</strong></h3>
             <div class="header-elements">
                 <div class="list-icons">
-                    <a href="@Url.Action("AddRole","User")" class="list-icons-item text-primary-600" title="Add Role"><i class="icon-plus3"></i></a>
+                    <a href="@Url.Action("AddRole","User")" class="list-icons-item text-white" title="Add Role"><i class="icon-plus3"></i></a>
                 </div>
             </div>
         </div>
-        <hr class="hr-mar-reduce" />
+        @*<hr class="hr-mar-reduce" />*@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
@@ -45,7 +45,7 @@
                                             {
                                                 foreach (var i in item.RolePermissionCollection)
                                                 {
-                                                    taskAssigned += i.Permission + ", ";
+                                                    taskAssigned += i.Permission.Replace("_"," ") + ", ";
                                                 }
                                             }
 
@@ -71,7 +71,7 @@
 </div>
 
 @section scripts{
-    @Scripts.Render("~/bundles/ajaxCall")
+    @Scripts.Render("~/bundles/ajax-call")
     <script type="text/javascript">
 
         function delete_Data(id) {

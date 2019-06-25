@@ -13,11 +13,11 @@
             <h5 class="card-title"><strong>User</strong></h5>
             <div class="header-elements">
                 <div class="list-icons">
-                    @*<a class="list-icons-item"><i class="icon-plus3"></i></a>*@
+                    <a href="@Url.Action("Index","User")" class="list-icons-item"><i class="icon-arrow-left52"></i></a>
                 </div>
             </div>
         </div>
-        <hr class="hr-mar-reduce" />
+        @*<hr class="hr-mar-reduce" />*@
         @using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "userRegisterCreateForm" }))
         {
             @Html.AntiForgeryToken()

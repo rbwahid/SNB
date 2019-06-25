@@ -20,7 +20,7 @@ namespace SNB.Web.Models
                 Username = authenticatedUserData.Split('|')[1],
                 FullName = authenticatedUserData.Split('|')[2],
                 ImageLink = (string.IsNullOrEmpty(authenticatedUserData.Split('|')[3]))
-                    ? "~/Content/images/avatar.png"
+                    ? "~/Content/images/no-image.jpg"
                     : authenticatedUserData.Split('|')[3],
             };
             return authenticatedUserModel;

@@ -23,7 +23,10 @@ textarea {
     max-width: 280px;
 }
 
-
+/*...All Pages...*/
+.serial {
+    width: 3%;
+}
 
 /*...Error Page...*/
 .error-search-box {
@@ -52,7 +55,7 @@ textarea {
     width: 300px;
 }
 
-/* Styles for validation helpers*/
+/*...Styles for validation helpers...*/
 .field-validation-error {
     color: #ff0000;
 }
@@ -73,4 +76,11 @@ textarea {
 
 .validation-summary-valid {
     display: none;
+}
+
+ /*...Override css...*/
+
+.header-elements .list-icons a {
+    border: 2px solid white;
+    padding: 3px !important;
 }
