@@ -1,0 +1,94 @@
+﻿
+@using SNB.Common
+@model SNB.Web.Models.UserLoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login - @DefaultValue.CompanyShortName</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+
+    @Styles.Render("~/Content/theme-global")
+    @Styles.Render("~/Content/site")
+
+</head>
+<body class="bg-slate-800">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Content area -->
+            <div class="content d-flex justify-content-center align-items-center">
+                <!-- Login card -->
+                @using (Html.BeginForm("Login", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card mb-0">
+                        <div class="card-body login-box">
+                            <div class="text-center mb-3">
+                                <img class="img img-fluid" src="~/Content/images/logo.gif" /><br/><br />
+                                @*<h5 class="mb-0">Login to your account</h5>*@
+                                <span class="d-block text-muted">Your credentials</span>
+                            </div>
+
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                @Html.TextBoxFor(model => model.UserName, "", new { @class = "form-control", @placeholder = "Username" })
+                                @Html.ValidationMessageFor(model => model.UserName)
+                                <div class="form-control-feedback">
+                                    <i class="icon-user text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                                <div class="form-control-feedback">
+                                    <i class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="form-check mb-0">
+                                    <label class="form-check-label">
+                                        @Html.CheckBoxFor(model => model.RememberMe, new { @class = "form-input-styled" })
+                                        @*<input type="checkbox" name="remember" class="form-input-styled" data-fouc>*@
+                                        Remember
+                                    </label>
+                                </div>
+                                <a href="" class="ml-auto">Forgot password?</a>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button>
+                            </div>
+
+                            @*<div class="form-group">
+                                    <a href="#" class="btn btn-light btn-block">Sign up</a>
+                                </div>
+                                <span class="form-text text-center text-muted">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>*@
+                        </div>
+                    </div>
+                }
+                <!-- /login card -->
+            </div>
+            <!-- /content area -->
+        </div>
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+
+    
+    @Scripts.Render("~/bundles/theme-core")
+    @Scripts.Render("~/bundles/uniform")
+    @Scripts.Render("~/bundles/theme-app")
+    @Scripts.Render("~/bundles/login")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

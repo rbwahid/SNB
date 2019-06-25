@@ -42,6 +42,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRoleService.cs" />
+    <Compile Include="UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SNB.Common\SNB.Common.csproj">
+      <Project>{68CFD5A7-A15B-4A9B-A11C-AAF40C589E87}</Project>
+      <Name>SNB.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNB.Entities\SNB.Entities.csproj">
+      <Project>{4859546B-91D1-4CC9-B752-05A39496DB4F}</Project>
+      <Name>SNB.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNB.Repository\SNB.Repository.csproj">
+      <Project>{AC85491A-961E-447E-B1BF-B296B628A8D3}</Project>
+      <Name>SNB.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

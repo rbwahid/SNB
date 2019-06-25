@@ -22,3 +22,65 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*...All Pages...*/
+.serial {
+    width: 3%;
+}
+
+/*...Error Page...*/
+.error-search-box {
+    max-width: 100%;
+}
+
+.error-content {
+    min-height: 500px;
+}
+
+/*...Change Password...*/
+.change-pass {
+    min-width: 450px;
+}
+
+.change-pass input {
+    max-width: 100%;
+}
+
+/*...Change Password Success...*/
+.cp-success-content {
+    min-height: 500px;
+}
+
+.cp-success-content a {
+    width: 300px;
+}
+
+/*...Styles for validation helpers...*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000 !important;
+    background-color: #ffeeee !important;
+}
+
+.validation-summary-errors {
+    font-weight: bold !important;
+    color: #ff0000 !important;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+ /*...Override css...*/
+
+.header-elements .list-icons a {
+    border: 2px solid white;
+    padding: 3px !important;
+}

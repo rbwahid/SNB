@@ -1,0 +1,84 @@
+﻿@using System.Collections
+@using SNB.Web.Models
+@model IEnumerable<SNB.Entities.UserRole>
+
+@{
+    ViewBag.Title = "User Role";
+    var sl = 1;
+}
+
+
+<div class="content">
+    <div class="card border-teal">
+        <div class="card-header header-elements-inline bg-teal">
+            <h3 class="card-title"><strong>User Role</strong></h3>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a href="@Url.Action("AddRole","User")" class="list-icons-item text-white" title="Add Role"><i class="icon-plus3"></i></a>
+                </div>
+            </div>
+        </div>
+        @*<hr class="hr-mar-reduce" />*@
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-xs table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th>@Html.DisplayNameFor(model => model.RoleName)</th>
+                                    <th>@Html.DisplayName("Permission")</th>
+                                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    string taskAssigned = "";
+                                    <tr>
+                                        <td class="serial">@(sl++)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.RoleName)</td>
+                                        <td>
+                                            @if (item.RolePermissionCollection.Any())
+                                            {
+                                                foreach (var i in item.RolePermissionCollection)
+                                                {
+                                                    taskAssigned += i.Permission.Replace("_"," ") + ", ";
+                                                }
+                                            }
+
+                                            @taskAssigned.Trim(',', ' ')
+                                        </td>
+                                        <td>@(item.Status != 0 ? "Active" : "Inactive")</td>
+                                        <td>
+                                            <div class="list-icons">
+                                                <a href="@Url.Action("EditRole","User", new { id = item.Id })" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                <a href="#" onclick="delete_Data('@item.Id')" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/ajax-call")
+    <script type="text/javascript">
+
+        function delete_Data(id) {
+               var url = '@Url.Action("DeleteRole", "User")';
+               var paramData = { id: id };
+               delete_confirm(url, paramData);
+            }
+
+    </script>
+}

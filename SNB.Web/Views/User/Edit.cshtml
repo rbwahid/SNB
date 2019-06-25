@@ -1,0 +1,147 @@
+﻿@model SNB.Web.Models.UserRegisterModel
+
+@{
+    ViewBag.Title = "User";
+}
+
+<!-- Content area -->
+<div class="content">
+    <!-- Basic layout-->
+    <div class="card border-teal">
+        <div class="card-header header-elements-inline bg-teal">
+            <h5 class="card-title"><strong>User</strong></h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a href="@Url.Action("Index","User")" class="list-icons-item"><i class="icon-arrow-left52"></i></a>
+                </div>
+            </div>
+        </div>
+        @*<hr class="hr-mar-reduce" />*@
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "userRegisterEditForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("InitialUserName", Model.UserName)
+            @Html.Hidden("InitialEmail", Model.Email)
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@*User Profile*@</label>
+                            <div class="col-lg-6">
+                                @if (Model.ImageFile != string.Empty && Model.ImageFile != null)
+                                {
+                                    <div class="file-preview" id="imageShow">
+                                        <button type="button" class="close fileinput-remove" aria-label="Close">
+                                            <span aria-hidden="true" onclick="deleteImageFunc()">X</span>
+                                        </button>
+                                        <div class=" file-drop-zone">
+                                            <div class="file-preview-thumbnails">
+                                                <div class="file-preview-frame krajee-default  kv-preview-thumb" id="preview-1560322089849_22-0" data-fileindex="0" data-template="image" style="min-height:13rem !important;">
+                                                    <div class="kv-file-content">
+                                                        <img src="@Url.Content(Model.ImageFile)" style="width:auto;height:auto;max-width:100%;max-height:100%;">
+                                                    </div>
+                                                    <div class="file-thumbnail-footer">
+                                                        <div class="file-footer-caption" title="@Model.ImageFile.Split('/').Last()">
+                                                            <div class="file-caption-info">@Model.ImageFile.Split('/').Last()</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="imageUpload" hidden>
+                                        <input type="file" id="ImageFileBase" name="ImageFileBase" class="file-input" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <input type="file" id="ImageFileBase" name="ImageFileBase" class="file-input" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
+                                    @*@Html.TextBoxFor(model => model.ImageFileBase, new { @type = "file", @class = "form-control input-sm file-input", @placeholder = "user image" })
+                                        @Html.ValidationMessageFor(model => model.ImageFileBase)*@
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.FullName)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(model => model.FullName)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Email)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.MobileNumber)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholder = "Mobile Number" })
+                                @Html.ValidationMessageFor(model => model.MobileNumber)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Gender)</label>
+                            <div class="col-lg-6">
+                                @{
+                                    var genderList = new List<SelectListItem>();
+                                    genderList.Add(new SelectListItem() { Text = "Male", Value = "Male" });
+                                    genderList.Add(new SelectListItem() { Text = "Female", Value = "Female" });
+                                }
+                                @Html.DropDownListFor(model => model.Gender, new SelectList(genderList, "Value", "Text"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.UserName)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "User Name" })
+                                @Html.ValidationMessageFor(model => model.UserName)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.RoleId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.RoleId, new SelectList(Model.Roles, "Id", "RoleName"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RoleId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index", "User")" class="btn btn-danger btn-custom"><i class="fa fa-times-circle text-white"></i> Cancel</a>
+                    <button type="submit" class="btn bg-teal btn-custom ml-3"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- /basic layout -->
+
+</div>
+<!-- /content area -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-file")
+    <script>
+        function deleteImageFunc() {
+            $("#imageShow").hide();
+            $("#imageUpload").removeAttr('hidden');
+        }
+    </script>
+}

@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +48,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditLogRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="LoginRecordRepository.cs" />
+    <Compile Include="Migrations\201906241129491_InitialMig.cs" />
+    <Compile Include="Migrations\201906241129491_InitialMig.Designer.cs">
+      <DependentUpon>201906241129491_InitialMig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="SNBDbContext.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="UserRoleRepository.cs" />
+    <Compile Include="UserRoleUnitOfWork.cs" />
+    <Compile Include="UserUnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SNB.Common\SNB.Common.csproj">
+      <Project>{68CFD5A7-A15B-4A9B-A11C-AAF40C589E87}</Project>
+      <Name>SNB.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNB.Entities\SNB.Entities.csproj">
+      <Project>{4859546B-91D1-4CC9-B752-05A39496DB4F}</Project>
+      <Name>SNB.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906241129491_InitialMig.resx">
+      <DependentUpon>201906241129491_InitialMig.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
