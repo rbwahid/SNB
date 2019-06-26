@@ -83,12 +83,13 @@ namespace SNB.Web
                 "~/Plugins/global_assets/js/plugins/pickers/pickadate/picker.js",
                 "~/Plugins/global_assets/js/plugins/pickers/pickadate/picker.date.js",
                 "~/Plugins/global_assets/js/plugins/pickers/pickadate/picker.time.js",
-                "~/Scripts/custom-date-format.js"));
+                "~/Scripts/custom-date.js"));
 
             // Bootstrap File Scripts---
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-file").Include(
                       "~/Plugins/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js",
-                      "~/Plugins/global_assets/js/demo_pages/uploader_bootstrap.js"));
+                      "~/Plugins/global_assets/js/demo_pages/uploader_bootstrap.js",
+                      "~/Scripts/custom-file.js"));
 
             // Sweet Alert Scripts---
             bundles.Add(new ScriptBundle("~/bundles/sweet-alert").Include(

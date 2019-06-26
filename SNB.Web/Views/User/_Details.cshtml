@@ -10,11 +10,14 @@
         }
 </style>
 
+@{
+    var imageUrl = !string.IsNullOrEmpty(Model.ImageFile) ? Url.Content(Model.ImageFile) : "";
+}
 <div class="row justify-content-md-center">
     <div class="col-md-3">
         <div class="card bg-teal-400" style="background-image: url(@Url.Content("~/Content/images/panel_bg.png")); background-size: contain;">
             <div class="card-img-actions" style="height:175px;">
-                <img class="card-img-top" src="@Url.Content(Model.ImageFile)" height="175" alt="User Picture">
+                <img class="card-img-top" src="@imageUrl" height="175" alt="User Picture">
             </div>
 
             <div class="card-body text-center" style="padding: 0.50rem">
