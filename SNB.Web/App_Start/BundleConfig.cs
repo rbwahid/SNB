@@ -100,6 +100,10 @@ namespace SNB.Web
             bundles.Add(new ScriptBundle("~/bundles/ajax-call").Include(
                 "~/Scripts/ajax-call.js"));
 
+            // Ajax Call Script---
+            bundles.Add(new ScriptBundle("~/bundles/user-profile").Include(
+                "~/Scripts/global_assets/js/demo_pages/user_pages_profile_tabbed.js"));
+
             // Common Script---
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                       "~/Scripts/common.js"));

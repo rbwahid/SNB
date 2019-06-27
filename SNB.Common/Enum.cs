@@ -16,6 +16,8 @@ namespace SNB.Common
     {
         GeneralUser = 1,
         SuperAdministrator = 2,
+        PendingUser = 3,
+        ApprovedUser = 4,
     }
 
     public enum EnumMonths

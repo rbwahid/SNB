@@ -26,7 +26,9 @@ namespace SNB.Repository.Migrations
             var seedRoles = new List<UserRole>
             {
                 new UserRole {RoleName = "Administrator", Status = (int)EnumUserRoleStatus.SuperAdministrator},
-                new UserRole {RoleName = "Admin", Status = (int)EnumUserRoleStatus.GeneralUser}
+                new UserRole {RoleName = "Admin", Status = (int)EnumUserRoleStatus.GeneralUser},
+                new UserRole {RoleName = DefaultValue.Role.Tenant, Status = (int)EnumUserRoleStatus.GeneralUser},
+                new UserRole {RoleName = DefaultValue.Role.Landlord, Status = (int)EnumUserRoleStatus.GeneralUser},
             };
             seedRoles.ForEach(s => context.UserRoles.AddOrUpdate(r => r.RoleName, s));
             context.SaveChanges();
