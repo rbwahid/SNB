@@ -25,6 +25,17 @@ namespace SNB.Repository
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<UserRolePermission> UserRolePermissions { get; set; }
 
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<AttachementFile> AttachementFiles { get; set; }
+        public DbSet<PropertyImage> PropertyImages { get; set; }
+        public DbSet<SeatingAllocationImage> SeatingAllocationImages { get; set; }
+        public DbSet<SeatingType> SeatingTypes { get; set; }
+        public DbSet<SeatingAllocation> SeatingAllocations { get; set; }
+        public DbSet<PropertyType> PropertyTypes { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<PropertyBooking> PropertyBookings { get; set; }
+
         public int SaveChanges(string occurrenceUserId)
         {
             if (!String.IsNullOrEmpty(occurrenceUserId))

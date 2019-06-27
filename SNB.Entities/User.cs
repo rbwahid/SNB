@@ -22,6 +22,8 @@ namespace SNB.Entities
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }
+        [Display(Name = "National ID")]
+        public string NationalID { get; set; }
         [Display(Name = "Mobile")]
         public string Mobile { get; set; }
         [Display(Name = "Address")]

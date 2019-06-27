@@ -29,7 +29,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-3">@*User Profile*@</label>
                             <div class="col-lg-6">
-                                @if (Model.ImageFile != string.Empty && Model.ImageFile != null)
+                                @*@if (Model.ImageFile != string.Empty && Model.ImageFile != null)
                                 {
                                     <div class="file-preview" id="imageShow">
                                         <button type="button" class="close fileinput-remove" aria-label="Close">
@@ -57,9 +57,9 @@
                                 else
                                 {
                                     <input type="file" id="ImageFileBase" name="ImageFileBase" class="file-input" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
-                                    @*@Html.TextBoxFor(model => model.ImageFileBase, new { @type = "file", @class = "form-control input-sm file-input", @placeholder = "user image" })
-                                        @Html.ValidationMessageFor(model => model.ImageFileBase)*@
-                                }
+                                    
+                                }*@
+                                <input type="file" id="ImageFileBase" name="ImageFileBase" class="fileinput-imagepreview" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
                             </div>
                         </div>
                     </div>
@@ -135,13 +135,23 @@
 </div>
 <!-- /content area -->
 
+@{
+    var imageUrl = !String.IsNullOrEmpty(Model.ImageFile)?Url.Content(Model.ImageFile):"";
+    var imageCaption = Model.FullName;
+}
+
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap-file")
+    <script src="~/Scripts/custom-file.js"></script>
     <script>
-        function deleteImageFunc() {
-            $("#imageShow").hide();
-            $("#imageUpload").removeAttr('hidden');
-        }
+        $(document).ready(function () {
+            bootstrapFileUpload('@imageUrl', '@imageCaption');
+        });
+
+        //function deleteImageFunc() {
+        //    $("#imageShow").hide();
+        //    $("#imageUpload").removeAttr('hidden');
+        //}
     </script>
 }
