@@ -2,9 +2,22 @@
 
 @{
     ViewBag.Title = "User Profile";
+    var authUser = AuthenticatedUser.GetUserFromDb(); 
 }
 
-
+@section styles{
+    <style>
+        .sidebar:not(.sidebar-sections) .card:not([class*="bg-"]):not(.fixed-top) {
+            background-color: #fff;
+        }
+        .sidebar .card {
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .1875rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+    </style>
+}
 
 <!-- Content area -->
 <div class="content">
@@ -18,23 +31,12 @@
                 <div class="card">
                     <div class="card-body bg-indigo-400 text-center card-img-top" style="background-image: url(@Url.Content("~/Content/images/panel_bg.png")); background-size: contain;">
                         <div class="card-img-actions d-inline-block mb-3">
-                            <img class="img-fluid rounded-circle" src="../../../../global_assets/images/placeholders/placeholder.jpg" width="170" height="170" alt="">
-                            <div class="card-img-actions-overlay rounded-circle">
-                                <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round">
-                                    <i class="icon-plus3"></i>
-                                </a>
-                                <a href="user_pages_profile.html" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
-                                    <i class="icon-link"></i>
-                                </a>
-                            </div>
+                            <img class="img-fluid rounded-circle" src="@Url.Content(authUser.ImageLink)" width="170" height="170" alt="Profile Image">
+                            
                         </div>
-                        <h6 class="font-weight-semibold mb-0">Victoria Davidson</h6>
-                        <span class="d-block opacity-75">Head of UX</span>
-                        <div class="list-icons list-icons-extended mt-3">
-                            <a href="#" class="list-icons-item text-white" data-popup="tooltip" title="" data-container="body" data-original-title="Google Drive"><i class="icon-google-drive"></i></a>
-                            <a href="#" class="list-icons-item text-white" data-popup="tooltip" title="" data-container="body" data-original-title="Twitter"><i class="icon-twitter"></i></a>
-                            <a href="#" class="list-icons-item text-white" data-popup="tooltip" title="" data-container="body" data-original-title="Github"><i class="icon-github"></i></a>
-                        </div>
+                        <h6 class="font-weight-semibold mb-0">@authUser.FullName</h6>
+                        <span class="d-block opacity-75">@authUser.Username</span>
+                        
                     </div>
                     <div class="card-body p-0">
                         <ul class="nav nav-sidebar mb-2">
@@ -45,30 +47,17 @@
                                     My profile
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a href="#schedule" class="nav-link" data-toggle="tab">
                                     <i class="icon-calendar3"></i>
                                     Schedule
                                     <span class="font-size-sm font-weight-normal opacity-75 ml-auto">02:56pm</span>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#inbox" class="nav-link" data-toggle="tab">
-                                    <i class="icon-envelop2"></i>
-                                    Inbox
-                                    <span class="badge bg-danger badge-pill ml-auto">29</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#orders" class="nav-link" data-toggle="tab">
-                                    <i class="icon-cart2"></i>
-                                    Orders
-                                    <span class="badge bg-success badge-pill ml-auto">16</span>
-                                </a>
-                            </li>
+                            </li>*@
+                           
                             <li class="nav-item-divider"></li>
                             <li class="nav-item">
-                                <a href="login_advanced.html" class="nav-link" data-toggle="tab">
+                                <a href="@Url.Action("LogOut","User")" class="nav-link">
                                     <i class="icon-switch2"></i>
                                     Logout
                                 </a>
@@ -81,10 +70,8 @@
             </div>
             <!-- /sidebar content -->
         </div>
-    <!-- /left sidebar component -->
-    
-
-    <!-- Right content -->
+        <!-- /left sidebar component -->
+        <!-- Right content -->
         <div class="tab-content w-100 overflow-auto">
             <div class="tab-pane fade active show" id="profile">
                 <!-- Profile info -->
@@ -122,7 +109,7 @@
                 </div>
                 <!-- /account settings -->
             </div>
-        
+
             <div class="tab-pane fade" id="schedule">
                 <!-- Schedule -->
                 <div class="card">

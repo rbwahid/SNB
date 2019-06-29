@@ -63,9 +63,21 @@
     <Compile Include="Migrations\201906270839180_UserEntityUpdated.Designer.cs">
       <DependentUpon>201906270839180_UserEntityUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906282321099_PropertyAndAttachmentEntityUpdate.cs" />
+    <Compile Include="Migrations\201906282321099_PropertyAndAttachmentEntityUpdate.Designer.cs">
+      <DependentUpon>201906282321099_PropertyAndAttachmentEntityUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906291053334_SeatingAllocationTitleAdd.cs" />
+    <Compile Include="Migrations\201906291053334_SeatingAllocationTitleAdd.Designer.cs">
+      <DependentUpon>201906291053334_SeatingAllocationTitleAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyRepository.cs" />
+    <Compile Include="PropertyUnitOfWork.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SeatingAllocationRepository.cs" />
+    <Compile Include="SeatingAllocationUnitOfWork.cs" />
     <Compile Include="SNBDbContext.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="UserRoleRepository.cs" />
@@ -95,6 +107,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906270839180_UserEntityUpdated.resx">
       <DependentUpon>201906270839180_UserEntityUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906282321099_PropertyAndAttachmentEntityUpdate.resx">
+      <DependentUpon>201906282321099_PropertyAndAttachmentEntityUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906291053334_SeatingAllocationTitleAdd.resx">
+      <DependentUpon>201906291053334_SeatingAllocationTitleAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

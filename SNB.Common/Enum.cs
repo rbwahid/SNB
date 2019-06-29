@@ -20,6 +20,12 @@ namespace SNB.Common
         ApprovedUser = 4,
     }
 
+    public enum EnumSeatingAllocationStatus
+    {
+        Available = 1,
+        NotAvailable = 2,
+    }
+
     public enum EnumMonths
     {
         January = 1,

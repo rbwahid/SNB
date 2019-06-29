@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SNB.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -37,6 +38,24 @@ namespace SNB.Web.Models
                 ImageLink = (string.IsNullOrEmpty(authenticatedUserData.Split('|')[3]))
                     ? "~/Content/images/avatar.png"
                     : authenticatedUserData.Split('|')[3],
+            };
+            return authenticatedUserModel;
+        }
+
+        public static AuthenticatedUserModel GetUserFromDb()
+        {
+            var authenticatedUserData = System.Web.HttpContext.Current.User.Identity.Name;
+            var userId = Convert.ToInt32(authenticatedUserData.Split('|')[0]);
+            var user = new UserService().GetUserById(userId);
+
+            var authenticatedUserModel = new AuthenticatedUserModel
+            {
+                UserId = Convert.ToInt32(authenticatedUserData.Split('|')[0]),
+                Username = user.UserName,
+                FullName = user.FullName,
+                ImageLink = (string.IsNullOrEmpty(user.ImageFile))
+                    ? "~/Content/images/no-image.jpg"
+                    : user.ImageFile,
             };
             return authenticatedUserModel;
         }

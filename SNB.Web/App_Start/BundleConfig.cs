@@ -102,7 +102,17 @@ namespace SNB.Web
 
             // Ajax Call Script---
             bundles.Add(new ScriptBundle("~/bundles/user-profile").Include(
-                "~/Scripts/global_assets/js/demo_pages/user_pages_profile_tabbed.js"));
+                "~/Plugins/global_assets/js/demo_pages/user_pages_profile_tabbed.js"));
+
+            // Ajax Call Script---
+            bundles.Add(new ScriptBundle("~/bundles/media-gallery").Include(
+                "~/Plugins/global_assets/js/plugins/media/fancybox.min.js",
+                "~/Plugins/global_assets/js/demo_pages/gallery_library.js"));
+
+            // Ajax Call Script---
+            bundles.Add(new ScriptBundle("~/bundles/table-responsive").Include(
+                "~/Plugins/global_assets/js/plugins/tables/footable/footable.min.js",
+                "~/Plugins/global_assets/js/demo_pages/table_responsive.js"));
 
             // Common Script---
             bundles.Add(new ScriptBundle("~/bundles/common").Include(

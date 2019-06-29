@@ -27,7 +27,7 @@ namespace SNB.Repository
 
         public DbSet<District> Districts { get; set; }
         public DbSet<Area> Areas { get; set; }
-        public DbSet<AttachementFile> AttachementFiles { get; set; }
+        public DbSet<AttachmentFile> AttachmentFiles { get; set; }
         public DbSet<PropertyImage> PropertyImages { get; set; }
         public DbSet<SeatingAllocationImage> SeatingAllocationImages { get; set; }
         public DbSet<SeatingType> SeatingTypes { get; set; }
