@@ -16,6 +16,18 @@ function ajaxCall(url, paramData, callback, method, obj) {
             }
             else if (callback == 'renderResetPassword') {
                 renderResetPassword(response);
+            }
+            else if (callback == 'renderDistrictEntryLoad') {
+                renderDistrictEntryLoad(response);
+            }
+            else if (callback == 'renderAreaEntryLoad') {
+                renderAreaEntryLoad(response);
+            }
+            else if (callback == 'renderPropertyTypeEntryLoad') {
+                renderPropertyTypeEntryLoad(response);
+            }
+            else if (callback == 'renderSeatingTypeEntryLoad') {
+                renderSeatingTypeEntryLoad(response);
             }  
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

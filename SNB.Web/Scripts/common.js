@@ -27,6 +27,10 @@ function delete_confirm(url, paramData) {
             ajaxCall(url, paramData, "renderRemoveItem");
 
         }
+        //else if (result.value) {
+        //    ajaxCall(url, paramData, "renderRemoveItem");
+
+        //}
     });
 
 }

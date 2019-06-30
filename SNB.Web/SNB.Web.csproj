@@ -176,9 +176,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PropertyTypeController.cs" />
+    <Compile Include="Controllers\SeatingTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomActionFilter.cs" />
     <Compile Include="CustomExceptionFilter.cs" />
@@ -188,6 +192,10 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\AreaModel.cs" />
+    <Compile Include="Models\SeatingTypeModel.cs" />
+    <Compile Include="Models\PropertyTypeModel.cs" />
+    <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\ExceptionLogger.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -2763,6 +2771,14 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\RoleList.cshtml" />
     <Content Include="Views\User\_Details.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
+    <Content Include="Views\District\_DistrictAddOdEdit.cshtml" />
+    <Content Include="Views\Area\Index.cshtml" />
+    <Content Include="Views\Area\_AreaAddOdEdit.cshtml" />
+    <Content Include="Views\PropertyType\_PropertyTypeAddOdEdit.cshtml" />
+    <Content Include="Views\PropertyType\Index.cshtml" />
+    <Content Include="Views\SeatingType\_SeatingTypeAddOdEdit.cshtml" />
+    <Content Include="Views\SeatingType\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
