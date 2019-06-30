@@ -1,0 +1,34 @@
+﻿
+@model  SNB.Web.Models.DistrictModel
+@{
+    ViewBag.Title = "Area";
+}
+@using (Html.BeginForm("Add", "District", FormMethod.Post, new { @class = "form-horizontal", @id = "DistrictCreateForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Add Or Edit</h5>
+        </div>
+        <hr class="hr-mar-reduce" />
+        <div class="card-body">
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id, new { @id = "DistrictId" })
+            @Html.Hidden("InitialDistrictName", "undefined")
+            
+            <div class="form-group row">
+                @Html.LabelFor(model => model.DistrictName, new { @class = "col-sm-4" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(model => model.DistrictName, new { @class = "form-control input-sm" })
+                    @Html.ValidationMessageFor(model => model.DistrictName)
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index","District")" class="btn btn-danger btn-custom"><i class="fa fa-times-circle text-white"></i> Cancel</a>
+                <button type="submit" id="submitButton" class="btn  bg-teal btn-custom pull-right "><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+}

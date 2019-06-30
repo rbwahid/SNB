@@ -1,0 +1,97 @@
+﻿@using System.Collections
+@using SNB.Web.Models
+@model IEnumerable<SNB.Entities.Area>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="content">
+    <div class="card border-teal">
+        <div class="card-header bg-teal  header-elements-inline">
+            <h3 class="card-title"><strong>District</strong></h3>
+            <div class="header-elements">
+                <div class="list-icons">
+                    @*<a href="#" class="list-icons-item text-primary-600"><i class="icon-plus3"></i></a>*@
+                </div>
+            </div>
+        </div>
+        <hr class="hr-mar-reduce" />
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="table-responsive">
+                        <table class="table table-xs table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th>@Html.DisplayNameFor(model => model.DistrictId)</th>
+                                    <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @{ var rowCount = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@(rowCount++)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.District.DistrictName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.AreaName)</td>
+                                            <td>
+                                                <div class="list-icons">
+                                                    <a href="#" onclick="getDataForEdit('@item.Id')" class="list-icons-item text-primary-600"><i class="icon-pencil7"></i></a>
+                                                    <a href="#" onclick="delete_Data('@item.Id')" class="list-icons-item text-danger-600"><i class="icon-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @{AreaModel AreaModel = new AreaModel();}
+                    @Html.Partial("~/Views/Area/_AreaAddOdEdit.cshtml", AreaModel)
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ajax-call")
+    <script>
+
+             function delete_Data(id) {
+                var url = '@Url.Action("Delete", "Area")';
+                var paramData = { id: id };
+                delete_confirm(url, paramData);
+            }
+            function getDataForEdit(id) {
+                var url = '@Url.Action("LoadArea", "Area")';
+                var paramData = { id: id };
+                ajaxCall(url, paramData, "renderAreaEntryLoad");
+
+            }
+        function renderAreaEntryLoad(data) {
+                var editUrl = '@Url.Action("Edit", "Area")';
+                $('#AreaCreateForm').attr('action', editUrl);
+            $("#AreaId").val(data.Id);
+            $("#AreaName").val(data.AreaName);
+            $("#InitialAreaName").val(data.AreaName);
+            if (data.DistrictId == 0 || data.DistrictId == null) {
+                $('#DistrictId option[value=""]').prop("selected", true);
+                } else {
+                $('#DistrictId option[value=' + data.DistrictId + ']').prop("selected", true);
+                }
+                $("#submitButton").html('<i class="fa fa-save"></i> Update');
+            }
+    </script>
+}

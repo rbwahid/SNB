@@ -49,6 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuditLogRepository.cs" />
+    <Compile Include="AreaRepository.cs" />
+    <Compile Include="SeatingTypeUnitOfwork.cs" />
+    <Compile Include="SeatingTypeRepository.cs" />
+    <Compile Include="PropertyTypeUnitOfwork.cs" />
+    <Compile Include="PropertyTypeRepository.cs" />
+    <Compile Include="DistrictRepository.cs" />
+    <Compile Include="AreaUnitOfwork.cs" />
+    <Compile Include="DistrictUnitOfwork.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="LoginRecordRepository.cs" />
     <Compile Include="Migrations\201906241129491_InitialMig.cs" />
