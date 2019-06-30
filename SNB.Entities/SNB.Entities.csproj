@@ -48,7 +48,7 @@
     <Compile Include="District.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="LoginRecord.cs" />
-    <Compile Include="AttachementFile.cs" />
+    <Compile Include="AttachmentFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property.cs" />
     <Compile Include="PropertyBooking.cs" />

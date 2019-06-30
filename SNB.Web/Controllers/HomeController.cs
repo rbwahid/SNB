@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SNB.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,8 @@ namespace SNB.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new HomeModel();
+            return View(model);
         }
 
         public ActionResult About()

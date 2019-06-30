@@ -13,13 +13,10 @@ namespace SNB.Web.Models
     public class UserModel : User
     {
         private UserService _userService;
-        public int CurrentUserId { get; set; }
 
         public UserModel()
         {
             _userService = new UserService();
-            
-            CurrentUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
         }
 
         public IEnumerable<User> GetAllUser()
@@ -49,12 +46,12 @@ namespace SNB.Web.Models
 
         public void DeleteUser(int id)
         {
-            _userService.DeleteUser(id, CurrentUserId);
+            _userService.DeleteUser(id, AuthenticatedUser.GetUserFromIdentity().UserId);
         }
 
         public void ActiveUser(int id)
         {
-            _userService.ActiveUser(id, CurrentUserId);
+            _userService.ActiveUser(id, AuthenticatedUser.GetUserFromIdentity().UserId);
         }
 
         public void ResetPassword(int id)
@@ -64,7 +61,7 @@ namespace SNB.Web.Models
             if (user != null)
             {
                 string password = DefaultValue.UserResetPassword;
-                _userService.ResetPassword(id, EncryptDecrypt.GetMd5Hash(md5Hash, password), CurrentUserId);
+                _userService.ResetPassword(id, EncryptDecrypt.GetMd5Hash(md5Hash, password), AuthenticatedUser.GetUserFromIdentity().UserId);
             }
         }
         

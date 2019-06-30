@@ -1,0 +1,145 @@
+﻿@using SNB.Web.Models
+
+@{
+    ViewBag.Title = "User Profile";
+    var authUser = AuthenticatedUser.GetUserFromDb(); 
+}
+
+@section styles{
+    <style>
+        .sidebar:not(.sidebar-sections) .card:not([class*="bg-"]):not(.fixed-top) {
+            background-color: #fff;
+        }
+        .sidebar .card {
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .1875rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+    </style>
+}
+
+<!-- Content area -->
+<div class="content">
+    <!-- Inner container -->
+    <div class="d-md-flex align-items-md-start">
+        <!-- Left sidebar component -->
+        <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-left wmin-300 border-0 shadow-0 sidebar-expand-md">
+            <!-- Sidebar content -->
+            <div class="sidebar-content">
+                <!-- Navigation -->
+                <div class="card">
+                    <div class="card-body bg-indigo-400 text-center card-img-top" style="background-image: url(@Url.Content("~/Content/images/panel_bg.png")); background-size: contain;">
+                        <div class="card-img-actions d-inline-block mb-3">
+                            <img class="img-fluid rounded-circle" src="@Url.Content(authUser.ImageLink)" width="170" height="170" alt="Profile Image">
+                            
+                        </div>
+                        <h6 class="font-weight-semibold mb-0">@authUser.FullName</h6>
+                        <span class="d-block opacity-75">@authUser.Username</span>
+                        
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="nav nav-sidebar mb-2">
+                            <li class="nav-item-header">Navigation</li>
+                            <li class="nav-item">
+                                <a href="#profile" class="nav-link active" data-toggle="tab">
+                                    <i class="icon-user"></i>
+                                    My profile
+                                </a>
+                            </li>
+                            @*<li class="nav-item">
+                                <a href="#schedule" class="nav-link" data-toggle="tab">
+                                    <i class="icon-calendar3"></i>
+                                    Schedule
+                                    <span class="font-size-sm font-weight-normal opacity-75 ml-auto">02:56pm</span>
+                                </a>
+                            </li>*@
+                           
+                            <li class="nav-item-divider"></li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("LogOut","User")" class="nav-link">
+                                    <i class="icon-switch2"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /navigation -->
+
+            </div>
+            <!-- /sidebar content -->
+        </div>
+        <!-- /left sidebar component -->
+        <!-- Right content -->
+        <div class="tab-content w-100 overflow-auto">
+            <div class="tab-pane fade active show" id="profile">
+                <!-- Profile info -->
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">Profile information</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="reload"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @Html.Partial("_UserProfileInfo", new RegistrationByUserModel(AuthenticatedUser.GetUserFromIdentity().UserId))
+                    </div>
+                </div>
+                <!-- /profile info -->
+                <!-- Account settings -->
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">Account settings</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="reload"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @Html.Partial("_UserPasswordChange", new ChangePsswordViewModel())
+                    </div>
+                </div>
+                <!-- /account settings -->
+            </div>
+
+            <div class="tab-pane fade" id="schedule">
+                <!-- Schedule -->
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">My schedule</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="reload"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="my-schedule"></div>
+                    </div>
+                </div>
+                <!-- /schedule -->
+            </div>
+        </div>
+        <!-- /right content -->
+    </div>
+    <!-- /inner container -->
+</div>
+<!-- /content area -->
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/uniform")
+    @Scripts.Render("~/bundles/user-profile")
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

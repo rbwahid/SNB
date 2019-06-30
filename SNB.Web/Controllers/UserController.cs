@@ -352,13 +352,99 @@ namespace SNB.Web.Controllers
         }
         #endregion
 
+        #region User Specific
+
+        #region user registrtion by user
+        [AllowAnonymous]
+        public ActionResult UserRegistration()
+        {
+
+            ViewBag.Message = "";
+            TempData["RegistrationSuccess"] = "";
+            //ViewBag.RoleId = new SelectList(db.Roles.Where(r => r.Status == 1).OrderBy(x => x.RoleName), "RoleId", "RoleName");
+            RegistrationByUserModel registerModel = new RegistrationByUserModel();
+
+            return View(registerModel);
+        }
+
+        // POST: /User/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public async Task<ActionResult> UserRegistration(RegistrationByUserModel userRegister)
+        {
+            ViewBag.Message = "";
+            if (ModelState.IsValid)
+            {
+
+                userRegister.RegisterNewUser();
+                TempData["RegistrationSuccess"] = "New user registration successfully complete! Username and Password sent to user by Email.";
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Message = "Something went wrong! please try again";
+            }
+            //ViewBag.RoleId = new SelectList(db.Roles.Where(r => r.RoleId != 1 && r.Status == 1).OrderBy(x => x.RoleName), "RoleId", "RoleName", userRegister.RoleId);
+            return View(userRegister);
+        }
+        #endregion
+
+        #region user profile edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserProfileEdit(RegistrationByUserModel userRegister)
+        {
+
+            ViewBag.Message = "";
+
+            userRegister.EditUser();
+            TempData["RegistrationSuccess"] = "User update successfully complete!";
+
+            return RedirectToAction("UserProfile");
+        }
+
+        #endregion
+
+        #region user profile
+        [HttpGet]
+        public ActionResult UserProfile()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region user password change
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserPasswordChange(ChangePsswordViewModel model)
+        {
+                
+            MD5 md5Hash = MD5.Create();
+            string hashNewPassword = EncryptDecrypt.GetMd5Hash(md5Hash, model.NewPassword);
+            model.SaveNewPassword(AuthenticatedUser.GetUserFromIdentity().UserId, hashNewPassword);
+
+            return RedirectToAction("UserProfile","User");
+        }
+
+        #endregion
+
+        #endregion
+
         #region json helper
+        [AllowAnonymous]
         public JsonResult IsUserNameExist(string UserName, string InitialUserName)
         {
             bool isNotExist = new UserModel().IsUserNameExist(UserName, InitialUserName);
             return Json(isNotExist, JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public JsonResult IsEmailExist(string Email, string InitialEmail)
         {
             bool isNotExist = new UserModel().IsEmailExist(Email, InitialEmail);

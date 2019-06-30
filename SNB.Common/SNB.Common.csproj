@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,10 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomColor.cs" />
     <Compile Include="DefaultValue.cs" />
     <Compile Include="EncryptDecrypt.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="ExtensionMethod.cs" />
+    <Compile Include="CustomFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SNB.Entities\SNB.Entities.csproj">
+      <Project>{4859546B-91D1-4CC9-B752-05A39496DB4F}</Project>
+      <Name>SNB.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SNB.Entities.SeatingAllocation>
+@using SNB.Common
+
+@{
+    ViewBag.Title = "Seating Allocation";
+    var serial = 1;
+}
+
+<!-- Table with togglable columns -->
+<div class="card border-teal">
+    <div class="card-header header-elements-inline bg-teal">
+        <h5 class="card-title"><strong>Seating Allocation</strong></h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a href="@Url.Action("NewSeatingAllocation","SeatingAllocation")" class="list-icons-item text-white" title="New SeatingAllocation"><i class="icon-plus3"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+
+    </div>
+    <table class="table table-togglable table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th data-toggle="true">@Html.DisplayNameFor(model => model.SeatingAllocationTitle)</th>
+                <th data-hide="phone">@Html.DisplayNameFor(model => model.PropertyId)</th>
+                <th data-hide="phone,tablet">@Html.DisplayNameFor(model => model.SeatingTypeId)</th>
+                <th data-hide="phone,tablet">@Html.DisplayNameFor(model => model.AvailableDate)</th>
+                <th data-hide="phone,tablet">@Html.DisplayNameFor(model => model.Rent)</th>
+                <th data-hide="phone">Status</th>
+                <th class="text-center" style="width: 30px;">@*<i class="icon-menu-open2"></i>*@ Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="serial">@(serial++)</td>
+                    <td>@item.SeatingAllocationTitle</td>
+                    <td>@item.Property.PropertyName</td>
+                    <td>@item.SeatingType.TypeName</td>
+                    <td>@item.AvailableDate.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>@item.Rent.ToString("N2")</td>
+                    <td><span class="badge @CustomColor.SeatingAllocationStatus(item.Status??0) ">@((EnumSeatingAllocationStatus)item.Status)</span></td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="@Url.Action("Details","SeatingAllocation", new { id = item.Id })" class="dropdown-item text-info"><i class="icon-eye"></i> Details</a>
+                                    <a href="#" class="dropdown-item text-primary"><i class="icon-pencil7"></i> Edit</a>
+                                    <a href="#" class="dropdown-item text-danger"><i class="icon-bin"></i> Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- table with togglable columns -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/table-responsive")
+}

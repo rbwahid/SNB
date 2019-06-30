@@ -40,21 +40,22 @@ namespace SNB.Services
                 UserName = user.UserName,
                 Email = user.Email,
                 Password = user.Password,
+                NationalID = user.NationalID,
                 Gender = user.Gender,
                 Address = user.Address,
                 Mobile = user.Mobile,
                 SupUser = user.SupUser,
-                //UserType = user.UserType,
+                UserType = user.UserType,
                 ImageFile = user.ImageFile,
                 RoleId = user.RoleId,
                 LastPassword = user.Password,
                 LastPassChangeDate = DateTime.Now,
-                PasswordChangedCount = 0,
+                PasswordChangedCount = user.PasswordChangedCount??0,
                 LockoutEnabled = true,
                 LockoutEndDateUtc = DateTime.Now,
                 AccessFailedCount = 0,
 
-                Status = (int)EnumUserStatus.GeneralUser,
+                Status = user.Status,
                 CreatedBy = user.CreatedBy,
                 CreatedAt = user.CreatedAt,
             };
@@ -86,7 +87,7 @@ namespace SNB.Services
                 userEntry.Gender = updateUser.Gender;
                 userEntry.Address = updateUser.Address;
                 userEntry.Mobile = updateUser.Mobile;
-                userEntry.RoleId = updateUser.RoleId;
+                userEntry.RoleId = updateUser.RoleId??userEntry.RoleId;
                 userEntry.UpdatedAt = updateUser.UpdatedAt;
                 userEntry.UpdatedBy = updateUser.UpdatedBy;
 
@@ -213,6 +214,16 @@ namespace SNB.Services
         public void SaveNewPassword(string userName, string hashNewPassword)
         {
             var user = _userUnitOfWork.UserRepository.GetUserByUsername(userName);
+            user.LastPassword = user.Password;
+            user.Password = hashNewPassword;
+            user.LastPassChangeDate = DateTime.Now;
+            user.PasswordChangedCount += 1;
+            _userUnitOfWork.Save();
+        }
+
+        public void SaveNewPassword(int userId, string hashNewPassword)
+        {
+            var user = _userUnitOfWork.UserRepository.GetById(userId);
             user.LastPassword = user.Password;
             user.Password = hashNewPassword;
             user.LastPassChangeDate = DateTime.Now;

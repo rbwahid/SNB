@@ -26,7 +26,9 @@ namespace SNB.Repository.Migrations
             var seedRoles = new List<UserRole>
             {
                 new UserRole {RoleName = "Administrator", Status = (int)EnumUserRoleStatus.SuperAdministrator},
-                new UserRole {RoleName = "Admin", Status = (int)EnumUserRoleStatus.GeneralUser}
+                new UserRole {RoleName = "Admin", Status = (int)EnumUserRoleStatus.GeneralUser},
+                new UserRole {RoleName = DefaultValue.Role.Tenant, Status = (int)EnumUserRoleStatus.GeneralUser},
+                new UserRole {RoleName = DefaultValue.Role.Landlord, Status = (int)EnumUserRoleStatus.GeneralUser},
             };
             seedRoles.ForEach(s => context.UserRoles.AddOrUpdate(r => r.RoleName, s));
             context.SaveChanges();
@@ -48,6 +50,52 @@ namespace SNB.Repository.Migrations
 
             };
             users.ForEach(s => context.Users.AddOrUpdate(u => u.UserName, s));
+            context.SaveChanges();
+            #endregion
+
+            #region PropertyType seed
+            var propertyTypes = new List<PropertyType>
+            {
+                new PropertyType{ TypeName = "Apartment" },
+                new PropertyType{ TypeName = "Hostel" },
+                new PropertyType{ TypeName = "Mess" },
+            };
+            propertyTypes.ForEach(s => context.PropertyTypes.AddOrUpdate(u => u.TypeName, s));
+            context.SaveChanges();
+            #endregion
+
+            #region SeatingType seed
+            var seatingTypes = new List<SeatingType>
+            {
+                new SeatingType{ TypeName = "Apartment" },
+                new SeatingType{ TypeName = "Room" },
+                new SeatingType{ TypeName = "Seat" },
+            };
+            seatingTypes.ForEach(s => context.SeatingTypes.AddOrUpdate(u => u.TypeName, s));
+            context.SaveChanges();
+            #endregion
+
+            #region District seed
+            var districts = new List<District>
+            {
+                new District{ DistrictName = "Dhaka" },
+                new District{ DistrictName = "Rajshahi" },
+                new District{ DistrictName = "Rangpur" },
+            };
+            districts.ForEach(s => context.Districts.AddOrUpdate(u => u.DistrictName, s));
+            context.SaveChanges();
+            #endregion
+
+            #region Area seed
+            var areas = new List<Area>
+            {
+                new Area{ AreaName = "Dhanmondi", DistrictId = context.Districts.FirstOrDefault(x => x.DistrictName == "Dhaka").Id },
+                new Area{ AreaName = "Mohakhali", DistrictId = context.Districts.FirstOrDefault(x => x.DistrictName == "Dhaka").Id },
+                new Area{ AreaName = "Mirpur", DistrictId = context.Districts.FirstOrDefault(x => x.DistrictName == "Dhaka").Id },
+                new Area{ AreaName = "Rangpur City", DistrictId = context.Districts.FirstOrDefault(x => x.DistrictName == "Rangpur").Id },
+                new Area{ AreaName = "Rajshahi City", DistrictId = context.Districts.FirstOrDefault(x => x.DistrictName == "Rajshahi").Id },
+            };
+            areas.ForEach(s => context.Areas.AddOrUpdate(u => u.AreaName, s));
             context.SaveChanges();
             #endregion
         }
