@@ -1,0 +1,116 @@
+﻿@model SNB.Web.Models.PropertyModel
+
+@{
+    ViewBag.Title = "New Property";
+}
+
+
+<!-- Content area -->
+<div class="content">
+
+    <!-- Basic layout-->
+    <div class="card border-teal">
+        <div class="card-header header-elements-inline bg-teal">
+            <h5 class="card-title"><strong>Property</strong></h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a href="@Url.Action("Index","Property")" class="list-icons-item"><i class="icon-arrow-left52"></i></a>
+                </div>
+            </div>
+        </div>
+        @*<hr class="hr-mar-reduce" />*@
+        @using (Html.BeginForm("NewProperty", "Property", FormMethod.Post, new { enctype = "multipart/form-data", @class = "propertyCreateForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <input type="file" id="ImageFileBase" name="ImageFileBases" class="file-input" multiple="multiple" accept="image/*" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyTitle)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.PropertyTitle, new { @class = "form-control", @placeholder = "Property Title" })
+                                @Html.ValidationMessageFor(model => model.PropertyTitle)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyName)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.PropertyName, new { @class = "form-control", @placeholder = "Property Name" })
+                                @Html.ValidationMessageFor(model => model.PropertyName)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.ContactNo)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @placeholder = "Contact No" })
+                                @Html.ValidationMessageFor(model => model.ContactNo)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyTypeId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.PropertyTypeId, new SelectList(Model.PropertyTypes, "Id", "TypeName"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PropertyTypeId)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.DistrictId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.DistrictId, new SelectList(Model.Districts, "Id", "DistrictName"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DistrictId)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.AreaId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.AreaId, new SelectList(Model.Areas, "Id", "AreaName"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AreaId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index", "Property")" class="btn btn-danger btn-custom"><i class="fa fa-times-circle text-white"></i> Cancel</a>
+                    <button type="submit" class="btn bg-teal btn-custom ml-3" id="productSubmit"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- /basic layout -->
+
+</div>
+<!-- /content area -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-file")
+
+}
+

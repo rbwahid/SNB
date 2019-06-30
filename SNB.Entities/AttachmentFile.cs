@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SNB.Entities
 {
-    [Table("AttachementFiles")]
-    public class AttachementFile : AuditableEntity
+    [Table("AttachmentFiles")]
+    public class AttachmentFile : AuditableEntity
     {
         public string FileName { get; set; }
         public string OrginalFileName { get; set; }
         public string FileExtension { get; set; }
+        public int? FileSize { get; set; }
         public string FileLocation { get; set; }
     }
 }

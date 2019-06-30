@@ -1,0 +1,152 @@
+﻿@using SNB.Common
+@model SNB.Web.Models.RegistrationByUserModel
+
+@{
+    ViewBag.Title = "User";
+}
+
+<!-- Content area -->
+<div class="content d-flex justify-content-center align-items-center">
+
+    <!-- Basic layout-->
+
+            @*<hr class="hr-mar-reduce" />*@
+            @using (Html.BeginForm("UserRegistration", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class="flex-fill", @id = "userRegisterCreateForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("InitialUserName", "undefined")
+                @Html.Hidden("InitialEmail", "undefined")
+                
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="icon-plus3 icon-2x text-success border-success border-3 rounded-round p-3 mb-3 mt-1"></i>
+                            <h5 class="mb-0">Create account</h5>
+                            @*<span class="d-block text-muted">All fields are required</span>*@
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Name" })
+                            <div class="form-control-feedback">
+                                <i class="icon-user-check text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FullName)
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "User Name" })
+                            <div class="form-control-feedback">
+                                <i class="icon-user-plus text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                            <div class="form-control-feedback">
+                                <i class="icon-mention text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    @Html.PasswordFor(model => model.NewPassword, new { @class = "form-control", @type = "password", @placeholder = "Password" })
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user-lock text-muted"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.NewPassword)
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @type = "password", @placeholder = "Confirm Password" })
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user-lock text-muted"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @Html.TextBoxFor(model => model.NationalID, new { @class = "form-control", @placeholder = "NID No" })
+                            <div class="form-control-feedback">
+                                <i class="icon-vcard text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.NationalID)
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @{
+                                var genderList = new List<SelectListItem>();
+                                genderList.Add(new SelectListItem() { Text = "Male", Value = "Male" });
+                                genderList.Add(new SelectListItem() { Text = "Female", Value = "Female" });
+                            }
+                            @Html.DropDownListFor(model => model.Gender, new SelectList(genderList, "Value", "Text"), "---Select Gender---", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Gender)
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholder = "Mobile No" })
+                            <div class="form-control-feedback">
+                                <i class="icon-phone2 text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.MobileNumber)
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+                            <div class="form-control-feedback">
+                                <i class="icon-location4 text-muted"></i>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    @Html.RadioButtonFor(model => model.UserType, @DefaultValue.UserType.Tenant, new { @class = "form-input-styled", @id="userType1", @checked = "checked" })
+                                    @*<input type="radio" name="UserType" class="form-input-styled" data-fouc>*@
+                                    @DefaultValue.UserType.Tenant
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    @Html.RadioButtonFor(model => model.UserType, @DefaultValue.UserType.Landlord, new { @class = "form-input-styled", @id = "userType2" })
+                                    @*<input type="radio" name="UserType" class="form-input-styled" data-fouc>*@
+                                    @DefaultValue.UserType.Landlord
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @Html.CheckBoxFor(model => model.AcceptTerms, new { @class = "form-input-styled" })
+                                    Accept <a href="#">terms of service</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right float-right"><b><i class="icon-plus3"></i></b> Create account</button>
+                    </div>
+                </div>
+            
+                </div>
+                </div>}
+    <!-- /basic layout -->
+
+</div>
+<!-- /content area -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/uniform")
+    @Scripts.Render("~/bundles/login")
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

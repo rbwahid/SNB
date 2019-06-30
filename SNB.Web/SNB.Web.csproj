@@ -179,6 +179,8 @@
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Controllers\SeatingAllocationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomActionFilter.cs" />
     <Compile Include="CustomExceptionFilter.cs" />
@@ -189,8 +191,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\ExceptionLogger.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PropertyModel.cs" />
+    <Compile Include="Models\RegistrationByUserModel.cs" />
+    <Compile Include="Models\SeatingAllocationModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRegisterModel.cs" />
@@ -2763,6 +2769,17 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\RoleList.cshtml" />
     <Content Include="Views\User\_Details.cshtml" />
+    <Content Include="Views\User\UserRegistration.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\User\_UserProfileInfo.cshtml" />
+    <Content Include="Views\User\_UserPasswordChange.cshtml" />
+    <Content Include="Views\Property\NewProperty.cshtml" />
+    <Content Include="Views\Property\Details.cshtml" />
+    <Content Include="Views\Property\Index.cshtml" />
+    <Content Include="Views\SeatingAllocation\Index.cshtml" />
+    <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
+    <Content Include="Views\SeatingAllocation\Details.cshtml" />
+    <Content Include="Views\Home\_PropertySeatingInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

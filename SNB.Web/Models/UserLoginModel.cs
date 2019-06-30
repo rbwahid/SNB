@@ -109,6 +109,11 @@ namespace SNB.Web.Models
             _userService.SaveNewPassword(userName, hashNewPassword);
         }
 
+        public void SaveNewPassword(int userId, string hashNewPassword)
+        {
+            _userService.SaveNewPassword(userId, hashNewPassword);
+        }
+
         public User GetUserById(int id)
         {
             return _userService.GetUserById(id);

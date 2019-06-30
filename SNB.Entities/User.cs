@@ -32,7 +32,7 @@ namespace SNB.Entities
         public bool SupUser { get; set; }
         [Display(Name = "Image Link")]
         public string ImageFile { get; set; }
-        //public string UserType { get; set; }
+        public string UserType { get; set; }
         [Display(Name = "Role")]
         public int? RoleId { get; set; }
         [ForeignKey("RoleId")]

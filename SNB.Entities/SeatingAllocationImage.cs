@@ -15,6 +15,6 @@ namespace SNB.Entities
         public virtual SeatingAllocation SeatingAllocation { get; set; }
         public int AttachementFileId { get; set; }
         [ForeignKey("AttachementFileId")]
-        public virtual AttachementFile AttachementFile { get; set; }
+        public virtual AttachmentFile AttachementFile { get; set; }
     }
 }

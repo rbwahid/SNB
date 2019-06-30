@@ -16,6 +16,14 @@ namespace SNB.Common
     {
         GeneralUser = 1,
         SuperAdministrator = 2,
+        PendingUser = 3,
+        ApprovedUser = 4,
+    }
+
+    public enum EnumSeatingAllocationStatus
+    {
+        Available = 1,
+        NotAvailable = 2,
     }
 
     public enum EnumMonths

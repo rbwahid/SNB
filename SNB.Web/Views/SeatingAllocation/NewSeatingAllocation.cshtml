@@ -1,0 +1,109 @@
+﻿@model SNB.Web.Models.SeatingAllocationModel
+
+@{
+    ViewBag.Title = "New SeatingAllocation";
+}
+
+
+<!-- Content area -->
+<div class="content">
+
+    <!-- Basic layout-->
+    <div class="card border-teal">
+        <div class="card-header header-elements-inline bg-teal">
+            <h5 class="card-title"><strong>Seating Allocation</strong></h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a href="@Url.Action("Index","SeatingAllocation")" class="list-icons-item"><i class="icon-arrow-left52"></i></a>
+                </div>
+            </div>
+        </div>
+        @*<hr class="hr-mar-reduce" />*@
+        @using (Html.BeginForm("NewSeatingAllocation", "SeatingAllocation", FormMethod.Post, new { enctype = "multipart/form-data", @class = "seatingAllocationCreateForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <input type="file" id="ImageFileBase" name="ImageFileBases" class="file-input" multiple="multiple" accept="image/*" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.SeatingAllocationTitle)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.SeatingAllocationTitle, new { @class = "form-control", @placeholder = "Title" })
+                                @Html.ValidationMessageFor(model => model.SeatingAllocationTitle)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.AvailableDate)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.AvailableDate, new { @class = "form-control daterange-singledate", @Value="", @placeholder = "Available Date" })
+                                @Html.ValidationMessageFor(model => model.AvailableDate)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Rent)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.Rent, new { @class = "form-control", @placeholder = "Rent" })
+                                @Html.ValidationMessageFor(model => model.Rent)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Description)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Description" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.SeatingTypeId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.SeatingTypeId, new SelectList(Model.SeatingTypes, "Id", "TypeName"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SeatingTypeId)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.PropertyId, new SelectList(Model.Properties, "Id", "PropertyName"), "---Select---", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PropertyId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index", "SeatingAllocation")" class="btn btn-danger btn-custom"><i class="fa fa-times-circle text-white"></i> Cancel</a>
+                    <button type="submit" class="btn bg-teal btn-custom ml-3" id="productSubmit"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- /basic layout -->
+
+</div>
+<!-- /content area -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-file")
+    @Scripts.Render("~/bundles/daterange-picker")
+
+}
+
