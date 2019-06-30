@@ -27,7 +27,7 @@ namespace SNB.Services
             return _propertyUnitOfWork.PropertyRepository.GetById(id);
         }
 
-        public IEnumerable<Property> GetByUserId(int? id)
+        public IEnumerable<Property> GetByUserId(int id)
         {
             return _propertyUnitOfWork.PropertyRepository.GetByUserId(id);
         }

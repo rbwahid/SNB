@@ -179,6 +179,7 @@
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PropertyBookingController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Controllers\SeatingAllocationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PropertyBookingModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Models\RegistrationByUserModel.cs" />
     <Compile Include="Models\SeatingAllocationModel.cs" />
@@ -2780,6 +2782,12 @@
     <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
     <Content Include="Views\SeatingAllocation\Details.cshtml" />
     <Content Include="Views\Home\_PropertySeatingInfo.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertyBookingInfo.cshtml" />
+    <Content Include="Views\PropertyBooking\Index.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertyBookingSuccess.cshtml" />
+    <Content Include="Views\ErrorHandler\UnAuthenticError.cshtml" />
+    <Content Include="Views\ErrorHandler\ExceptionError.cshtml" />
+    <Content Include="Views\PropertyBooking\_Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

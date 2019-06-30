@@ -20,5 +20,20 @@ namespace SNB.Common
                     return "badge-secondary";
             }
         }
+
+        public static string PropertyBookingStatus(int value)
+        {
+            switch (value)
+            {
+                case (int)EnumPropertyBookingStatus.Pending:
+                    return "badge-warning";
+                case (int)EnumPropertyBookingStatus.Accepted:
+                    return "badge-success";
+                case (int)EnumPropertyBookingStatus.Rejected:
+                    return "badge-danger";
+                default:
+                    return "badge-secondary";
+            }
+        }
     }
 }

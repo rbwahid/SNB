@@ -15,7 +15,7 @@
             <a href="@Url.Content(imageUrl)" data-popup="lightbox" class="btn btn-outline bg-white text-white border-white border-2">
                 Preview
             </a>
-            <a href="#" class="btn btn-outline bg-white text-white border-white border-2 ml-2">
+            <a href="@Url.Action("PropertyBookingInfo","PropertyBooking", new {seatingAllocationId = Model.Id})" class="btn btn-outline bg-white text-white border-white border-2 ml-2">
                 Details
             </a>
         </div>
@@ -30,7 +30,7 @@
         <p class="mb-0 text-muted">@Model.SeatingType.TypeName</p>
         <p class="mb-0 text-muted">@Model.Property.Address</p>
         <p class="mb-0 text-muted">@Model.Description</p>
-        <a href="#" class="btn bg-indigo-400 btn-block mt-2"><i class="icon-link mr-2"></i> Find out more</a>
+        <a href="@Url.Action("PropertyBookingInfo","PropertyBooking", new {seatingAllocationId = Model.Id})" class="btn bg-indigo-400 btn-block mt-2"><i class="icon-link mr-2"></i> Find out more</a>
     </div>
 </div>
 <!-- /card with image and button -->

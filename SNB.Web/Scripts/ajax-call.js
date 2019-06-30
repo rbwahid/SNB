@@ -38,6 +38,9 @@ function ajaxCallModal(url, paramData, callback, method, obj) {
             if (callback == 'renderUserDetailsEntryLoad') {
                 renderUserDetailsEntryLoad(response);
             }
+            else if (callback == 'renderPropertyBookingDetailsEntryLoad') {
+                renderPropertyBookingDetailsEntryLoad(response);
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(textStatus + "! please try again", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');

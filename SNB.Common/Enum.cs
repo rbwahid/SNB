@@ -26,6 +26,13 @@ namespace SNB.Common
         NotAvailable = 2,
     }
 
+    public enum EnumPropertyBookingStatus
+    {
+        Pending = 1,
+        Accepted = 2,
+        Rejected = 3,
+    }
+
     public enum EnumMonths
     {
         January = 1,
