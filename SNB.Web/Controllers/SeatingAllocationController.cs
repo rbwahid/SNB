@@ -44,10 +44,32 @@ namespace SNB.Web.Controllers
                 return RedirectToAction("Details", "SeatingAllocation", new { id = modelId });
             }
 
+           
+            return View(model);
+        }
+        public ActionResult Edit(int id)
+        {
+            var model = new SeatingAllocationModel(id);
             model.LoadAllListData();
             return View(model);
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SeatingAllocationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Update();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+        public ActionResult Delete(int id)
+        {
+            new SeatingAllocationModel().Disable(id);
+            //return Json(new { meg = "success" });
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public ActionResult Details(int id)
         {

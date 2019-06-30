@@ -2796,6 +2796,8 @@
     <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
     <Content Include="Views\SeatingAllocation\Details.cshtml" />
     <Content Include="Views\Home\_PropertySeatingInfo.cshtml" />
+    <Content Include="Views\Property\Edit.cshtml" />
+    <Content Include="Views\SeatingAllocation\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

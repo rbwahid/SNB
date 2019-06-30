@@ -17,6 +17,7 @@ namespace SNB.Web.Models
 
         private SeatingAllocationService _seatingAllocationService;
         private PropertyService _propertyService;
+        private SeatingTypeService _seatingTypeService;
         private int loggedInUserId;
 
         public IEnumerable<Property> Properties { get; set; }
@@ -27,6 +28,7 @@ namespace SNB.Web.Models
         {
             _seatingAllocationService = new SeatingAllocationService();
             _propertyService = new PropertyService();
+            _seatingTypeService = new SeatingTypeService();
             loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
         }
         public SeatingAllocationModel(int id) : this()
@@ -57,11 +59,8 @@ namespace SNB.Web.Models
 
         public void LoadAllListData()
         {
-            this.SeatingTypes = new List<SeatingType>() {
-                new SeatingType{ Id=1, TypeName = "Apartment" },
-                new SeatingType{ Id=2, TypeName = "Room" },
-                new SeatingType{ Id=3, TypeName = "Seat" }
-            };
+
+            this.SeatingTypes = _seatingTypeService.GetAllSeatingType().ToList();
             this.Properties = _propertyService.GetByUserId(loggedInUserId).ToList();
         }
 

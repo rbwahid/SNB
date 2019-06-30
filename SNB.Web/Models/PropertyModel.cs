@@ -11,6 +11,9 @@ namespace SNB.Web.Models
     public class PropertyModel : Property
     {
         private PropertyService _propertyService;
+        private AreaService _areaService;
+        private DistrictService _districtService;
+        private PropertyTypeService _propertyTypeService;
         private int loggedInUserId;
 
         public IEnumerable<Area> Areas { get; set; }
@@ -21,6 +24,10 @@ namespace SNB.Web.Models
         public PropertyModel()
         {
             _propertyService = new PropertyService();
+            _areaService = new AreaService();
+            _districtService = new DistrictService();
+            _propertyTypeService = new PropertyTypeService();
+            
             loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId; 
         }
 
@@ -53,25 +60,9 @@ namespace SNB.Web.Models
 
         public void LoadAllListData()
         {
-            this.PropertyTypes = new List<PropertyType>() {
-                new PropertyType{ Id=1, TypeName = "Apartment" },
-                new PropertyType{ Id=2, TypeName = "Hostel" },
-                new PropertyType{ Id=3, TypeName = "Mess" }
-            };
-            this.Districts = new List<District>()
-            {
-                new District{ Id=1, DistrictName = "Dhaka" },
-                new District{ Id=2, DistrictName = "Rajshahi" },
-                new District{ Id=3, DistrictName = "Rangpur" }
-            };
-            this.Areas = new List<Area>()
-            {
-                new Area{ Id=1,AreaName = "Dhanmondi", DistrictId = this.Districts.FirstOrDefault(x => x.DistrictName == "Dhaka").Id },
-                new Area{ Id=2, AreaName = "Mohakhali", DistrictId = this.Districts.FirstOrDefault(x => x.DistrictName == "Dhaka").Id },
-                new Area{ Id=3, AreaName = "Mirpur", DistrictId = this.Districts.FirstOrDefault(x => x.DistrictName == "Dhaka").Id },
-                new Area{ Id=4, AreaName = "Rangpur City", DistrictId = this.Districts.FirstOrDefault(x => x.DistrictName == "Rangpur").Id },
-                new Area{ Id=5, AreaName = "Rajshahi City", DistrictId = this.Districts.FirstOrDefault(x => x.DistrictName == "Rajshahi").Id },
-            };
+            this.Areas = _areaService.GetAllAreas().ToList();
+            this.Districts = _districtService.GetAllDistricts().ToList();
+            this.PropertyTypes = _propertyTypeService.GetAllPropertyType().ToList();
         }
 
         public IEnumerable<Property> GetAll()
