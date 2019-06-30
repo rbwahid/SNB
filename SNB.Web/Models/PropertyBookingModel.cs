@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using SNB.Common;
 using SNB.Entities;
 using SNB.Services;
@@ -18,7 +19,6 @@ namespace SNB.Web.Models
         {
             _propertyBookingService = new PropertyBookingService();
             _seatingAllocationService = new SeatingAllocationService();
-            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
         }
 
         public PropertyBookingModel(int id) : this()
@@ -50,7 +50,20 @@ namespace SNB.Web.Models
 
         public IEnumerable<PropertyBooking> GetByUserId(int? id)
         {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             return _propertyBookingService.GetByUserId(loggedInUserId).ToList();
+        }
+
+        public IEnumerable<PropertyBooking> GetByTenantId(int? id)
+        {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
+            return _propertyBookingService.GetByTenantId(loggedInUserId).ToList();
+        }
+
+        public IEnumerable<PropertyBooking> GetByLandlordId(int? id)
+        {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
+            return _propertyBookingService.GetByLandlordId(loggedInUserId).ToList();
         }
 
         public PropertyBooking GetById(int id)
@@ -60,12 +73,14 @@ namespace SNB.Web.Models
 
         public int Add()
         {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             this.UserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             return _propertyBookingService.Add(this, loggedInUserId);
         }
 
         public int Update()
         {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             return _propertyBookingService.Update(this, loggedInUserId);
         }
 
@@ -77,12 +92,20 @@ namespace SNB.Web.Models
 
         public void Disable(int id)
         {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             _propertyBookingService.Disable(id, loggedInUserId);
         }
 
         public void Enable(int id)
         {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             _propertyBookingService.Disable(id, loggedInUserId);
+        }
+
+        public void ChangePropertyBookingStatus(int id, int status)
+        {
+            loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
+            _propertyBookingService.ChangePropertyBookingStatus(id, status, loggedInUserId);
         }
 
         public void Dispose()

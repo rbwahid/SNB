@@ -96,9 +96,9 @@ namespace SNB.Web.Models
                 var fileNameWithoutExt = Path.GetFileNameWithoutExtension(ImageFileBase.FileName);
                 var fileExtension = Path.GetExtension(ImageFileBase.FileName);
                 var finalFileName = FullName + "_Profile" + string.Format("{0:yyMMddhhmmss}", DateTime.Now) + fileExtension;
-                string savePath = Path.Combine(HttpContext.Current.Server.MapPath("/Uploads/"), finalFileName);
+                string savePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/"), finalFileName);
                 ImageFileBase.SaveAs(savePath);
-                ImagePath = "/Uploads/" + finalFileName;
+                ImagePath = "~/Uploads/" + finalFileName;
 
             }
             int? loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
@@ -146,9 +146,9 @@ namespace SNB.Web.Models
                 var fileNameWithoutExt = Path.GetFileNameWithoutExtension(ImageFileBase.FileName);
                 var fileExtension = Path.GetExtension(ImageFileBase.FileName);
                 var finalFileName = FullName + "_Profile" + string.Format("{0:yyMMddhhmmss}", DateTime.Now) + fileExtension;
-                string savePath = Path.Combine(HttpContext.Current.Server.MapPath("/Uploads/"), finalFileName);
+                string savePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads/"), finalFileName);
                 ImageFileBase.SaveAs(savePath);
-                updateUser.ImageFile = "/Uploads/" + finalFileName;
+                updateUser.ImageFile = "~/Uploads/" + finalFileName;
             }
           
             _userService.EditUser(updateUser);

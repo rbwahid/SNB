@@ -88,7 +88,7 @@ namespace SNB.Web.Controllers
                             return RedirectToAction("ChangePassword", "User", new { userName = user.UserName.ToLower() });
                         }
 
-                        FormsAuthentication.SetAuthCookie(validUser.Id + "|" + validUser.UserName.ToUpper() + "|" + validUser.FullName + "|" + validUser.ImageFile, model.RememberMe); ;
+                        FormsAuthentication.SetAuthCookie(validUser.Id + "|" + validUser.UserName.ToUpper() + "|" + validUser.FullName + "|" + validUser.ImageFile + "|" + validUser.UserType, model.RememberMe); ;
                         Session["sessionid"] = System.Web.HttpContext.Current.Session.SessionID;
                         loginModel.SaveLogin(validUser.UserName.ToUpper(), System.Web.HttpContext.Current.Session.SessionID.ToString(), true);
 
@@ -115,7 +115,7 @@ namespace SNB.Web.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("Index", "Home");
         }
 
         #endregion

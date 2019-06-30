@@ -82,7 +82,7 @@
         
 
             <div class="col-md-5">
-                @using (Html.BeginForm("PropertyBookingRequest", "PropertyBooking", FormMethod.Post))
+                @using (Html.BeginForm("PropertyBookingRequest", "PropertyBooking", FormMethod.Get))
                 {
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(model => model.SeatingAllocationId)

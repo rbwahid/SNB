@@ -23,6 +23,7 @@ namespace SNB.Web.Models
                 ImageLink = (string.IsNullOrEmpty(authenticatedUserData.Split('|')[3]))
                     ? "~/Content/images/no-image.jpg"
                     : authenticatedUserData.Split('|')[3],
+                UserType = authenticatedUserData.Split('|')[4],
             };
             return authenticatedUserModel;
         }
@@ -38,6 +39,7 @@ namespace SNB.Web.Models
                 ImageLink = (string.IsNullOrEmpty(authenticatedUserData.Split('|')[3]))
                     ? "~/Content/images/avatar.png"
                     : authenticatedUserData.Split('|')[3],
+                UserType = authenticatedUserData.Split('|')[4],
             };
             return authenticatedUserModel;
         }
@@ -56,6 +58,7 @@ namespace SNB.Web.Models
                 ImageLink = (string.IsNullOrEmpty(user.ImageFile))
                     ? "~/Content/images/no-image.jpg"
                     : user.ImageFile,
+                UserType = user.UserType,
             };
             return authenticatedUserModel;
         }
@@ -66,5 +69,6 @@ namespace SNB.Web.Models
         public string Username { get; set; }
         public string FullName { get; set; }
         public string ImageLink { get; set; }
+        public string UserType { get; set; }
     }
 }

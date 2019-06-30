@@ -20,7 +20,7 @@ namespace SNB.Services
 
         public IEnumerable<PropertyBooking> GetAll()
         {
-            return _propertyBookingUnitOfWork.PropertyBookingRepository.GetAll();
+            return _propertyBookingUnitOfWork.PropertyBookingRepository.GetAll().OrderByDescending(x => x.CreatedAt);
         }
 
         public PropertyBooking GetById(int id)
@@ -30,7 +30,17 @@ namespace SNB.Services
 
         public IEnumerable<PropertyBooking> GetByUserId(int id)
         {
-            return _propertyBookingUnitOfWork.PropertyBookingRepository.GetByUserId(id);
+            return _propertyBookingUnitOfWork.PropertyBookingRepository.GetByUserId(id).OrderByDescending(x => x.CreatedAt);
+        }
+
+        public IEnumerable<PropertyBooking> GetByLandlordId(int id)
+        {
+            return _propertyBookingUnitOfWork.PropertyBookingRepository.GetByLandlordId(id).OrderByDescending(x => x.CreatedAt);
+        }
+
+        public IEnumerable<PropertyBooking> GetByTenantId(int id)
+        {
+            return _propertyBookingUnitOfWork.PropertyBookingRepository.GetByTenantId(id).OrderByDescending(x => x.CreatedAt);
         }
 
         public int Add(PropertyBooking entity, int loggedInUserId)
@@ -83,6 +93,32 @@ namespace SNB.Services
         {
             _propertyBookingUnitOfWork.PropertyBookingRepository.Enable(id);
             _propertyBookingUnitOfWork.Save(loggedInUserId.ToString());
+        }
+
+        public void ChangePropertyBookingStatus(int id, int status, int loggedInUserId)
+        {
+            var entity = _propertyBookingUnitOfWork.PropertyBookingRepository.GetById(id);
+            if (entity != null)
+            {
+                if (status == (int)EnumPropertyBookingStatus.Accepted)
+                {
+                    entity.Status = (int)EnumPropertyBookingStatus.Accepted;
+                    entity.UpdatedAt = DateTime.Now;
+                    entity.UpdatedBy = loggedInUserId;
+
+                    entity.SeatingAllocation.Status = (int)EnumSeatingAllocationStatus.NotAvailable;
+                    entity.SeatingAllocation.UpdatedAt = DateTime.Now;
+                    entity.SeatingAllocation.UpdatedBy = loggedInUserId;
+                }
+                else if (status == (int)EnumPropertyBookingStatus.Rejected)
+                {
+                    entity.Status = (int)EnumPropertyBookingStatus.Rejected;
+                    entity.UpdatedAt = DateTime.Now;
+                    entity.UpdatedBy = loggedInUserId;
+                }
+
+                _propertyBookingUnitOfWork.Save(loggedInUserId.ToString());
+            }
         }
 
         public void Dispose()
