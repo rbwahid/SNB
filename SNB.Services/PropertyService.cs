@@ -70,7 +70,6 @@ namespace SNB.Services
                 existingEntity.Address = entity.Address;
                 existingEntity.ContactNo = entity.ContactNo;
                 existingEntity.PropertyTypeId = entity.PropertyTypeId;
-                existingEntity.UserId = entity.UserId;
                 existingEntity.AreaId = entity.AreaId;
                 existingEntity.DistrictId = entity.DistrictId;
 
