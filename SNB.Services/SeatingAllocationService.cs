@@ -12,10 +12,12 @@ namespace SNB.Services
     public class SeatingAllocationService
     {
         private SeatingAllocationUnitOfWork _seatingAllocationUnitOfWork;
+        private SeatingAllocationImageUnitOfwork _seatingAllocationImageUnitOfwork; 
 
         public SeatingAllocationService()
         {
             _seatingAllocationUnitOfWork = new SeatingAllocationUnitOfWork(new SNBDbContext());
+            _seatingAllocationImageUnitOfwork = new SeatingAllocationImageUnitOfwork(new SNBDbContext());
         }
 
         public IEnumerable<SeatingAllocation> GetAll()
@@ -93,6 +95,11 @@ namespace SNB.Services
         {
             _seatingAllocationUnitOfWork.SeatingAllocationRepository.Disable(id);
             _seatingAllocationUnitOfWork.Save(loggedInUserId.ToString());
+        }
+        public void DeleteSeatingAllocationImage(int id, int loggedInUserId)
+        {
+            _seatingAllocationImageUnitOfwork.SeatingAllocationImageRepository.DeleteFromDb(id);
+            _seatingAllocationImageUnitOfwork.Save();
         }
 
         public void Enable(int id, int loggedInUserId)

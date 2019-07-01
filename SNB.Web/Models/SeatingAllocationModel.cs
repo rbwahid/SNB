@@ -106,6 +106,10 @@ namespace SNB.Web.Models
         {
             _seatingAllocationService.Disable(id, loggedInUserId);
         }
+        public void DeleteSeatingAllocationImage(int id)
+        {
+            _seatingAllocationService.DeleteSeatingAllocationImage(id, loggedInUserId);
+        }
 
         public void Enable(int id)
         {

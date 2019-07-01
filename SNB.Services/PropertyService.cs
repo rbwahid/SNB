@@ -11,10 +11,12 @@ namespace SNB.Services
     public class PropertyService
     {
         private PropertyUnitOfWork _propertyUnitOfWork;
+        private PropertyImageUnitOfwork _propertyImageUnitOfwork ;
 
         public PropertyService()
         {
             _propertyUnitOfWork = new PropertyUnitOfWork(new SNBDbContext());
+            _propertyImageUnitOfwork = new PropertyImageUnitOfwork(new SNBDbContext());
         }
 
         public IEnumerable<Property> GetAll()
@@ -81,6 +83,12 @@ namespace SNB.Services
             }
 
             return entity.Id;
+        }
+
+        public void DeleteAttachmentFileImage(int id, int loggedInUserId)
+        {
+            _propertyImageUnitOfwork.PropertyImageRepository.DeleteFromDb(id);
+            _propertyImageUnitOfwork.Save(loggedInUserId.ToString());
         }
 
         public void Disable(int id, int loggedInUserId)

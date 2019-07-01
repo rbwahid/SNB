@@ -77,5 +77,13 @@ namespace SNB.Web.Controllers
         {
             return View(new SeatingAllocationModel(id));
         }
+
+        public ActionResult DeleteSeatingAllocationImage(int id)
+        {
+            new SeatingAllocationModel().DeleteSeatingAllocationImage(id);
+             return Json(new { meg = "success" });
+            //return RedirectToAction("Index");
+        }
+
     }
 }

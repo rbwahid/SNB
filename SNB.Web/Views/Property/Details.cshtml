@@ -5,8 +5,6 @@
     ViewBag.Title = "Property";
     var serial = 1;
 }
-
-
 <!-- Content area -->
 <div class="content">
 
@@ -155,7 +153,7 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="list-icons">
-                                        <a href="#" class="list-icons-item text-danger"><i class="icon-bin"></i></a>
+                                        <a href="#" onclick="delete_Data('@item.Id')"  class="list-icons-item text-danger"><i class="icon-bin"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -173,10 +171,20 @@
 </div>
 <!-- /content area -->
 
-@section scripts{
+
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ajax-call")
     @Scripts.Render("~/bundles/bootstrap-file")
     @Scripts.Render("~/bundles/media-gallery")
+    <script>
 
+        function delete_Data(id) {
+                var url = '@Url.Action("DeleteAttachmentFileImage", "Property")';
+                var paramData = { id: id };
+                 delete_confirm(url, paramData);
+              //   ajaxCall(url, paramData, "renderRemoveItem");
+            }
+
+    </script>
 }
-

@@ -75,5 +75,12 @@ namespace SNB.Web.Controllers
         {
             return View(new PropertyModel(id));
         }
+
+        public ActionResult DeleteAttachmentFileImage(int id)
+        {
+            new PropertyModel().DeleteAttachmentFileImage(id);
+             return Json(new { meg = "success" });
+            //return RedirectToAction("Details");
+        }
     }
 }

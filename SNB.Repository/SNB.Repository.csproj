@@ -48,8 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SeatingAllocationImageUnitOfwork.cs" />
+    <Compile Include="SeatingAllocationImageRepository.cs" />
+    <Compile Include="PropertyImageUnitOfwork.cs" />
+    <Compile Include="PropertyImageRepository.cs" />
     <Compile Include="AuditLogRepository.cs" />
     <Compile Include="AreaRepository.cs" />
+    <Compile Include="AttachmentFileRepository.cs" />
+    <Compile Include="AttachmentFileUnitOfwork.cs" />
     <Compile Include="SeatingTypeUnitOfwork.cs" />
     <Compile Include="SeatingTypeRepository.cs" />
     <Compile Include="PropertyTypeUnitOfwork.cs" />
