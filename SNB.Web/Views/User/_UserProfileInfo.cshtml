@@ -18,9 +18,8 @@
                     @Html.ValidationMessageFor(model => model.UserName)
                 </div>
                 <div class="col-md-6">
-                    @Html.LabelFor(model => model.MobileNumber)
-                    @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholeder = "Mobile No" })
-                    @Html.ValidationMessageFor(model => model.MobileNumber)
+                    @Html.LabelFor(model => model.NationalID)
+                    @Html.TextBoxFor(model => model.NationalID, new { @class = "form-control", @readonly="readonly" })
                 </div>
             </div>
         </div>
@@ -30,6 +29,20 @@
                     @Html.LabelFor(model => model.FullName)
                     @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholeder = "Name" })
                     @Html.ValidationMessageFor(model => model.FullName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.MobileNumber)
+                    @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholeder = "Mobile No" })
+                    @Html.ValidationMessageFor(model => model.MobileNumber)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholeder = "Email" })
+                    @Html.ValidationMessageFor(model => model.Email)
                 </div>
                 <div class="col-md-6">
                     @Html.LabelFor(model => model.Gender)
@@ -46,22 +59,13 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
-                    @Html.LabelFor(model => model.Email)
-                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholeder = "Email" })
-                    @Html.ValidationMessageFor(model => model.Email)
+                    @Html.LabelFor(model => model.Address)
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholeder = "Address" })
+                    @Html.ValidationMessageFor(model => model.Address)
                 </div>
                 <div class="col-md-6">
                     <label>Profile Image</label>
                     <input name="ImageFileBase" id="ImageFileBase" type="file" class="form-input-styled" data-fouc>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.LabelFor(model => model.Address)
-                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholeder = "Address" })
-                    @Html.ValidationMessageFor(model => model.Address)
                 </div>
             </div>
         </div>

@@ -18,12 +18,14 @@ namespace SNB.Web.Controllers
         }
 
         // GET: SeatingAllocation
+        [Roles("Global_SupAdmin,Seating_Allocation_Report")]
         public ActionResult Index()
         {
             return View(_seatingAllocationModel.GetByUserId(null));
         }
 
         [HttpGet]
+        [Roles("Global_SupAdmin,Seating_Allocation_Create")]
         public ActionResult NewSeatingAllocation(int? propertyId)
         {
             _seatingAllocationModel.LoadAllListData();

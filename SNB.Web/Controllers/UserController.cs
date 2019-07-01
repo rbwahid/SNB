@@ -79,8 +79,13 @@ namespace SNB.Web.Controllers
                     {
                         ModelState.AddModelError("", "Invalid credentials. Please try again.");
                     }
+                    else if (validUser.Status == (int)EnumUserStatus.Pending_User)
+                    {
+                        ModelState.AddModelError("", "You are not eligible for access, please wait for approve by admin or contact with admin");
+                    }
                     else
                     {
+
                         if (loginModel.IsFirstLogin(validUser.Id))
                         {
 
@@ -88,7 +93,7 @@ namespace SNB.Web.Controllers
                             return RedirectToAction("ChangePassword", "User", new { userName = user.UserName.ToLower() });
                         }
 
-                        FormsAuthentication.SetAuthCookie(validUser.Id + "|" + validUser.UserName.ToUpper() + "|" + validUser.FullName + "|" + validUser.ImageFile, model.RememberMe); ;
+                        FormsAuthentication.SetAuthCookie(validUser.Id + "|" + validUser.UserName.ToUpper() + "|" + validUser.FullName + "|" + validUser.ImageFile + "|" + validUser.UserType, model.RememberMe); ;
                         Session["sessionid"] = System.Web.HttpContext.Current.Session.SessionID;
                         loginModel.SaveLogin(validUser.UserName.ToUpper(), System.Web.HttpContext.Current.Session.SessionID.ToString(), true);
 
@@ -115,7 +120,7 @@ namespace SNB.Web.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("Index", "Home");
         }
 
         #endregion
@@ -150,7 +155,7 @@ namespace SNB.Web.Controllers
                 userRegister.RegisterNewUser();
                 TempData["RegistrationSuccess"] = "New user registration successfully complete! Username and Password sent to user by Email.";
 
-                return RedirectToAction("index");
+                return RedirectToAction("Index","User");
             }
             else
             {
@@ -383,7 +388,7 @@ namespace SNB.Web.Controllers
                 userRegister.RegisterNewUser();
                 TempData["RegistrationSuccess"] = "New user registration successfully complete! Username and Password sent to user by Email.";
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "User");
             }
             else
             {
@@ -475,6 +480,12 @@ namespace SNB.Web.Controllers
             return Json(new { msg = "Success" });
         }
 
+        public ActionResult UserApprove(int id)
+        {
+            new UserModel().UserApprovedStatus(id);
+            return Json(new { msg = "Success" });
+        }
+
         #region password policy
         //public JsonResult CheckValidatePassword(string password, string userName)
         //{
@@ -511,7 +522,8 @@ namespace SNB.Web.Controllers
         //}
         #endregion
 
-       
+
         #endregion
+
     }
 }

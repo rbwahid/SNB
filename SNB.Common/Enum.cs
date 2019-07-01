@@ -8,22 +8,29 @@ namespace SNB.Common
 {
     public enum EnumUserRoleStatus
     {
-        GeneralUser = 1,
-        SuperAdministrator = 2,
+        General_User = 1,
+        Super_Administrator = 2,
     }
 
     public enum EnumUserStatus
     {
-        GeneralUser = 1,
-        SuperAdministrator = 2,
-        PendingUser = 3,
-        ApprovedUser = 4,
+        General_User = 1,
+        Super_Administrator = 2,
+        Pending_User = 3,
+        Approved_User = 4,
     }
 
     public enum EnumSeatingAllocationStatus
     {
         Available = 1,
-        NotAvailable = 2,
+        Not_Available = 2,
+    }
+
+    public enum EnumPropertyBookingStatus
+    {
+        Pending = 1,
+        Accepted = 2,
+        Rejected = 3,
     }
 
     public enum EnumMonths

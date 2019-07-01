@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PropertyBookingController.cs" />
     <Compile Include="Controllers\PropertyTypeController.cs" />
     <Compile Include="Controllers\SeatingTypeController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PropertyBookingModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Models\RegistrationByUserModel.cs" />
     <Compile Include="Models\SeatingAllocationModel.cs" />
@@ -220,6 +222,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\no-image.jpg" />
     <Content Include="Content\images\panel_bg.png" />
     <Content Include="favicon.ico" />
@@ -2795,9 +2798,18 @@
     <Content Include="Views\SeatingAllocation\Index.cshtml" />
     <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
     <Content Include="Views\SeatingAllocation\Details.cshtml" />
-    <Content Include="Views\Home\_PropertySeatingInfo.cshtml" />
+
     <Content Include="Views\Property\Edit.cshtml" />
     <Content Include="Views\SeatingAllocation\Edit.cshtml" />
+    <Content Include="Views\Home\_PropertyBookingInfo.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertySeatingInfo.cshtml" />
+    <Content Include="Views\PropertyBooking\Index.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertyBookingSuccess.cshtml" />
+    <Content Include="Views\ErrorHandler\UnAuthenticError.cshtml" />
+    <Content Include="Views\ErrorHandler\ExceptionError.cshtml" />
+    <Content Include="Views\PropertyBooking\_Details.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertyInfo.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

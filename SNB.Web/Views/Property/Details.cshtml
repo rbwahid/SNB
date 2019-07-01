@@ -1,7 +1,9 @@
 ﻿@model SNB.Web.Models.PropertyModel
+@using SNB.Common
 
 @{
     ViewBag.Title = "Property";
+    var serial = 1;
 }
 
 
@@ -19,14 +21,6 @@
             </div>
         </div>
         <div class="card-body">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group row">
-
-                    </div>
-                </div>
-            </div>
 
             <div class="row">
 
@@ -80,6 +74,52 @@
                 </div>
             </div>
 
+            <!-- Seat Allocation -->
+            <div class="card">
+                <div class="card-header bg-white header-elements-inline">
+                    <h6 class="card-title">Seat Allocation</h6>
+                </div>
+                <table class="table table-striped media-library">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Seat Title</th>
+                            <th>Seating Type</th>
+                            <th>Available Date</th>
+                            <th>Rent</th>
+                            <th>Status</th>
+                            <th class="text-center">@*<i class="icon-menu-open2"></i>*@Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.SeatingAllocationCollection.Any())
+                        {
+                            <tr><td colspan="6" class="text-center">Don't have any seat allocation</td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.SeatingAllocationCollection)
+                             {
+                                 <tr>
+                                     <td class="serial">@(serial++)</td>
+                                     <td>@item.SeatingAllocationTitle</td>
+                                     <td>@item.SeatingType.TypeName</td>
+                                     <td>@item.AvailableDate.Value.ToString("dd-MMM-yyyy")</td>
+                                     <td>@item.Rent.ToString("N2")</td>
+                                     <td><span class="badge @CustomColor.SeatingAllocationStatus(item.Status??0) ">@((EnumSeatingAllocationStatus)item.Status)</span></td>
+                                     <td class="text-center">
+                                         <div class="list-icons">
+                                             <a href="@Url.Action("Details","SeatingAllocation", new { id = item.Id })" class="list-icons-item text-info"><i class="icon-eye"></i></a>
+                                             
+                                         </div>
+                                     </td>
+                                 </tr>
+                             }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /Seat Allocation -->
 
             <!-- Media library -->
             <div class="card">

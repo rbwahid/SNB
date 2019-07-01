@@ -50,6 +50,7 @@ namespace SNB.Web.Models
                 this.DistrictId = data.DistrictId;
                 this.District = data.District;
                 this.ImageCollection = data.ImageCollection;
+                this.SeatingAllocationCollection = data.SeatingAllocationCollection;
 
                 this.CreatedBy = data.CreatedBy;
                 this.CreatedAt = data.CreatedAt;

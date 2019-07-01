@@ -9,19 +9,29 @@ namespace SNB.Web.Models
 {
     public class HomeModel
     {
-        public IEnumerable<SeatingAllocation> SeatingAllocations { get; set; }
+        //public IEnumerable<SeatingAllocation> SeatingAllocations { get; set; }
+        public IEnumerable<Property> Properties { get; set; }
 
-        private SeatingAllocationService _seatingAllocationService;
+        //private SeatingAllocationService _seatingAllocationService;
+        private PropertyService _propertyService;
 
         public HomeModel()
         {
-            _seatingAllocationService = new SeatingAllocationService();
-            this.SeatingAllocations = _seatingAllocationService.GetAvailableSeatingAllocation();
+            //_seatingAllocationService = new SeatingAllocationService();
+            _propertyService = new PropertyService();
+
+            //this.SeatingAllocations = _seatingAllocationService.GetAvailableSeatingAllocation();
+            this.Properties = _propertyService.GetAvailableProperty();
         }
 
-        public IEnumerable<SeatingAllocation> GetAvailableSeatingAllocation()
+        //public IEnumerable<SeatingAllocation> GetAvailableSeatingAllocation()
+        //{
+        //    return _seatingAllocationService.GetAvailableSeatingAllocation();
+        //}
+
+        public IEnumerable<Property> GetAvailableProperty()
         {
-            return _seatingAllocationService.GetAvailableSeatingAllocation();
+            return _propertyService.GetAvailableProperty();
         }
 
     }

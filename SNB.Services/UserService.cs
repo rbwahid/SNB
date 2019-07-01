@@ -76,7 +76,7 @@ namespace SNB.Services
             _userUnitOfWork.Save();
         }
 
-        public void EditUser(User updateUser)
+        public void EditUserByUser(User updateUser)
         {
             User userEntry = _userUnitOfWork.UserRepository.GetUserById(updateUser.Id);
             if (userEntry != null)
@@ -87,7 +87,36 @@ namespace SNB.Services
                 userEntry.Gender = updateUser.Gender;
                 userEntry.Address = updateUser.Address;
                 userEntry.Mobile = updateUser.Mobile;
-                userEntry.RoleId = updateUser.RoleId??userEntry.RoleId;
+                //userEntry.RoleId = updateUser.RoleId;
+                //userEntry.UserType = updateUser.UserType;
+                //userEntry.NationalID = updateUser.NationalID;
+                userEntry.UpdatedAt = updateUser.UpdatedAt;
+                userEntry.UpdatedBy = updateUser.UpdatedBy;
+
+                if (updateUser.ImageFile != null)
+                {
+                    userEntry.ImageFile = updateUser.ImageFile;
+                }
+
+            }
+
+            _userUnitOfWork.Save(updateUser.UpdatedBy.ToString());
+        }
+
+        public void EditUserByAdmin(User updateUser)
+        {
+            User userEntry = _userUnitOfWork.UserRepository.GetUserById(updateUser.Id);
+            if (userEntry != null)
+            {
+                userEntry.FullName = updateUser.FullName;
+                userEntry.UserName = updateUser.UserName;
+                userEntry.Email = updateUser.Email;
+                userEntry.Gender = updateUser.Gender;
+                userEntry.Address = updateUser.Address;
+                userEntry.Mobile = updateUser.Mobile;
+                userEntry.RoleId = updateUser.RoleId;
+                userEntry.UserType = updateUser.UserType;
+                userEntry.NationalID = updateUser.NationalID;
                 userEntry.UpdatedAt = updateUser.UpdatedAt;
                 userEntry.UpdatedBy = updateUser.UpdatedBy;
 
@@ -218,6 +247,7 @@ namespace SNB.Services
             user.Password = hashNewPassword;
             user.LastPassChangeDate = DateTime.Now;
             user.PasswordChangedCount += 1;
+            user.UpdatedAt = DateTime.Now;
             _userUnitOfWork.Save();
         }
 
@@ -228,6 +258,7 @@ namespace SNB.Services
             user.Password = hashNewPassword;
             user.LastPassChangeDate = DateTime.Now;
             user.PasswordChangedCount += 1;
+            user.UpdatedAt = DateTime.Now;
             _userUnitOfWork.Save();
         }
 
@@ -255,6 +286,23 @@ namespace SNB.Services
             {
                 userEntry.Password = encryptPassword;
                 userEntry.PasswordChangedCount = 0;
+                userEntry.UpdatedAt = DateTime.Now;
+                userEntry.UpdatedBy = authorizeId;
+
+                _userUnitOfWork.UserRepository.Update(userEntry);
+                _userUnitOfWork.Save(authorizeId.ToString());
+            }
+        }
+
+        public void UserApprovedStatus(int id, int authorizeId)
+        {
+            var userEntry = _userUnitOfWork.UserRepository.GetById(id);
+            if (userEntry != null)
+            {
+                userEntry.Status = (int)EnumUserStatus.Approved_User;
+                userEntry.UpdatedAt = DateTime.Now;
+                userEntry.UpdatedBy = authorizeId;
+
                 _userUnitOfWork.UserRepository.Update(userEntry);
                 _userUnitOfWork.Save(authorizeId.ToString());
             }

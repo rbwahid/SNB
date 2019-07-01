@@ -1,4 +1,5 @@
-﻿@model SNB.Web.Models.UserRoleModel
+﻿@using SNB.Common
+@model SNB.Web.Models.UserRoleModel
 
 @{
     ViewBag.Title = "User Role";
@@ -31,7 +32,7 @@
                             <label class="col-form-label col-lg-2">@Html.DisplayNameFor(model => model.RoleName)</label>
                             <div class="col-lg-6">
 
-                                @if (Model.RoleName == "Admin")
+                                @if (Model.RoleName == "Admin" || Model.RoleName == DefaultValue.Role.Tenant || Model.RoleName == DefaultValue.Role.Landlord)
                                 {
                                     @Html.TextBoxFor(model => model.RoleName, new { @class = "form-control input-sm", @readonly = "readonly" })
                                 }
