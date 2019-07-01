@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SNB.Common;
 
 namespace SNB.Repository
 {
@@ -20,6 +21,13 @@ namespace SNB.Repository
         public IEnumerable<Property> GetByUserId(int id)
         {
             return base.GetAll(x => !x.IsDeleted && x.UserId == id);
+        }
+
+        public IEnumerable<Property> GetAvailableProperty()
+        {
+            return _context.SeatingAllocations.Where(x => !x.IsDeleted && 
+                    x.Status != (int)EnumSeatingAllocationStatus.Not_Available)
+                .Select(y => y.Property).Distinct().OrderByDescending(y => y.CreatedAt);
         }
     }
 }

@@ -214,6 +214,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\no-image.jpg" />
     <Content Include="Content\images\panel_bg.png" />
     <Content Include="favicon.ico" />
@@ -2781,13 +2782,14 @@
     <Content Include="Views\SeatingAllocation\Index.cshtml" />
     <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
     <Content Include="Views\SeatingAllocation\Details.cshtml" />
-    <Content Include="Views\Home\_PropertySeatingInfo.cshtml" />
-    <Content Include="Views\PropertyBooking\PropertyBookingInfo.cshtml" />
+    <Content Include="Views\Home\_PropertyBookingInfo.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertySeatingInfo.cshtml" />
     <Content Include="Views\PropertyBooking\Index.cshtml" />
     <Content Include="Views\PropertyBooking\PropertyBookingSuccess.cshtml" />
     <Content Include="Views\ErrorHandler\UnAuthenticError.cshtml" />
     <Content Include="Views\ErrorHandler\ExceptionError.cshtml" />
     <Content Include="Views\PropertyBooking\_Details.cshtml" />
+    <Content Include="Views\PropertyBooking\PropertyInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

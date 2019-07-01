@@ -19,6 +19,7 @@ namespace SNB.Web.Controllers
         }
 
         // GET: PropertyBooking
+        [Roles("Global_SupAdmin,Property_Booking_Report")]
         public ActionResult Index()
         {
             if (AuthenticatedUser.GetUserFromIdentity().UserType.ToLower() == DefaultValue.UserType.Landlord.ToLower())
@@ -30,7 +31,15 @@ namespace SNB.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult PropertyBookingInfo(int seatingAllocationId)
+        public ActionResult PropertyInfo(int propertyId)
+        {
+            var property = _propertyBookingModel.GetPropertyById(propertyId);
+            return View(property);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult PropertySeatingInfo(int seatingAllocationId)
         {
             _propertyBookingModel.LoadSeatingAllocationBySAId(seatingAllocationId);
             return View(_propertyBookingModel);
@@ -38,6 +47,7 @@ namespace SNB.Web.Controllers
 
         [HttpGet]
         //[ValidateAntiForgeryToken]
+        [Roles("Global_SupAdmin,Property_Booking_Request")]
         public ActionResult PropertyBookingRequest(PropertyBookingModel model)
         {
             if (ModelState.IsValid)

@@ -98,24 +98,21 @@ namespace SNB.Web.Models
 
             new RoleTaskCheckBoxModel {PermissionName="User_Configuration", PermissionCategory = "Configuration"},
             new RoleTaskCheckBoxModel {PermissionName="Role_Configuration", PermissionCategory = "Configuration"},
-
-            //new RoleTaskCheckBoxModel {PermissionName="Property_View", PermissionCategory = "Property"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Create", PermissionCategory = "Property"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Edit", PermissionCategory = "Property"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Delete", PermissionCategory = "Property"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Report", PermissionCategory = "Property"},
-
-            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_View", PermissionCategory = "SeatingAllocation"},
-            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Create", PermissionCategory = "SeatingAllocation"},
-            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Edit", PermissionCategory = "SeatingAllocation"},
-            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Delete", PermissionCategory = "SeatingAllocation"},
-            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Report", PermissionCategory = "SeatingAllocation"},
-
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Booking_View", PermissionCategory = "PropertyBooking"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Create", PermissionCategory = "PropertyBooking"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Edit", PermissionCategory = "PropertyBooking"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Delete", PermissionCategory = "PropertyBooking"},
-            //new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Report", PermissionCategory = "PropertyBooking"},
+            
+            new RoleTaskCheckBoxModel {PermissionName="Property_Create", PermissionCategory = "Property"},
+            new RoleTaskCheckBoxModel {PermissionName="Property_Edit", PermissionCategory = "Property"},
+            new RoleTaskCheckBoxModel {PermissionName="Property_Delete", PermissionCategory = "Property"},
+            new RoleTaskCheckBoxModel {PermissionName="Property_Report", PermissionCategory = "Property"},
+            
+            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Create", PermissionCategory = "Seating_Allocation"},
+            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Edit", PermissionCategory = "Seating_Allocation"},
+            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Delete", PermissionCategory = "Seating_Allocation"},
+            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Report", PermissionCategory = "Seating_Allocation"},
+            
+            new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Request", PermissionCategory = "Property_Booking"},
+            new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Edit", PermissionCategory = "Property_Booking"},
+            new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Delete", PermissionCategory = "Property_Booking"},
+            new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Report", PermissionCategory = "Property_Booking"},
 
         };
 

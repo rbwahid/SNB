@@ -19,6 +19,9 @@ function ajaxCall(url, paramData, callback, method, obj) {
             }
             else if (callback == 'renderPropertyBookingStatus') {
                 renderPropertyBookingStatus(response);
+            }
+            else if (callback == 'renderUserApprove') {
+                renderUserApprove(response);
             }  
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

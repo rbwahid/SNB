@@ -30,7 +30,7 @@ namespace SNB.Repository
 
         public IEnumerable<SeatingAllocation> GetAvailableSeatingAllocation()
         {
-            return base.GetAll(x => !x.IsDeleted && x.Status!=(int)EnumSeatingAllocationStatus.NotAvailable).OrderByDescending(y => y.CreatedAt);
+            return base.GetAll(x => !x.IsDeleted && x.Status!=(int)EnumSeatingAllocationStatus.Not_Available).OrderByDescending(y => y.CreatedAt);
         }
     }
 }

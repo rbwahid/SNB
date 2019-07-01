@@ -36,10 +36,13 @@ namespace SNB.Web.Models
         public string MobileNumber { get; set; }
         [Display(Name = "Address")]
         public string Address { get; set; }
+        [Required]
+        [Display(Name = "NID No")]
+        public string NationalID { get; set; }
         //[Required]
         public string Gender { get; set; }
         public bool SupUser { get; set; }
-        //public string UserType { get; set; }
+        public string UserType { get; set; }
         [Display(Name = "Image Link")]
         public string ImageFile { get; set; }
         [Display(Name = "Image")]
@@ -79,7 +82,8 @@ namespace SNB.Web.Models
                 MobileNumber = userEntry.Mobile;
                 RoleId = userEntry.RoleId??0;
                 ImageFile = userEntry.ImageFile;
-                //UserType = userEntry.UserType;
+                UserType = userEntry.UserType;
+                NationalID = userEntry.NationalID;
             }
         }
 
@@ -112,13 +116,22 @@ namespace SNB.Web.Models
                 Address = Address,
                 Mobile = MobileNumber,
                 SupUser = false,
-                Status = (byte)EnumUserStatus.GeneralUser,
+                Status = (int)EnumUserStatus.Approved_User,
                 CreatedBy = loggedInUserId,
                 RoleId = RoleId,
                 ImageFile = ImagePath,
-                //UserType = DefaultValue.UserType.RAUser
+                UserType = "",
+                NationalID = NationalID,
                 //ExpireDate = EmployeeType != "Permanent" ? ExpireDate : null
             };
+            if (newUser.RoleId == _userRoleService.GetUserRoleByName(DefaultValue.Role.Tenant).Id)
+            {
+                newUser.UserType = DefaultValue.UserType.Tenant;
+            }
+            else if (newUser.RoleId == _userRoleService.GetUserRoleByName(DefaultValue.Role.Landlord).Id)
+            {
+                newUser.UserType = DefaultValue.UserType.Landlord;
+            }
             _userService.AddUser(newUser);
             //new MailerModel().SendRegistationMail(Email, "New User Registration for SCHM Application", Name, UserName, password, ConfigurationManager.AppSettings["WebUrl"].ToString());
         }
@@ -136,11 +149,21 @@ namespace SNB.Web.Models
                 Email = Email,
                 Gender = Gender,
                 Address = Address,
+                NationalID = NationalID,
                 Mobile = MobileNumber,
                 RoleId = RoleId,
+                UserType = "",
                 UpdatedAt = DateTime.Now,
                 UpdatedBy = loggedInUserId,
             };
+            if (updateUser.RoleId == _userRoleService.GetUserRoleByName(DefaultValue.Role.Tenant).Id)
+            {
+                updateUser.UserType = DefaultValue.UserType.Tenant;
+            }
+            else if (updateUser.RoleId == _userRoleService.GetUserRoleByName(DefaultValue.Role.Landlord).Id)
+            {
+                updateUser.UserType = DefaultValue.UserType.Landlord;
+            }
             if (ImageFileBase != null)
             {
                 var fileNameWithoutExt = Path.GetFileNameWithoutExtension(ImageFileBase.FileName);
@@ -151,7 +174,7 @@ namespace SNB.Web.Models
                 updateUser.ImageFile = "~/Uploads/" + finalFileName;
             }
           
-            _userService.EditUser(updateUser);
+            _userService.EditUserByAdmin(updateUser);
         }
 
     }

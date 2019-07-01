@@ -49,7 +49,7 @@ namespace SNB.Services
             {
                 RoleName = roleName,
 
-                Status = (int)EnumUserRoleStatus.GeneralUser,
+                Status = (int)EnumUserRoleStatus.General_User,
                 RolePermissionCollection = rolePermissionList
             };
 

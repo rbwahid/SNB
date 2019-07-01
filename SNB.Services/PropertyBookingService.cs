@@ -106,7 +106,7 @@ namespace SNB.Services
                     entity.UpdatedAt = DateTime.Now;
                     entity.UpdatedBy = loggedInUserId;
 
-                    entity.SeatingAllocation.Status = (int)EnumSeatingAllocationStatus.NotAvailable;
+                    entity.SeatingAllocation.Status = (int)EnumSeatingAllocationStatus.Not_Available;
                     entity.SeatingAllocation.UpdatedAt = DateTime.Now;
                     entity.SeatingAllocation.UpdatedBy = loggedInUserId;
                 }

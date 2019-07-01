@@ -38,10 +38,10 @@
 </div>
 <br /><br />
 <div class="row">
-    @foreach (var item in Model.SeatingAllocations)
+    @foreach (var item in Model.Properties)
     {
         <div class="col-md-3">
-            @Html.Partial("_PropertySeatingInfo", item)
+            @Html.Partial("_PropertyBookingInfo", item)
         </div>
     }
 </div>

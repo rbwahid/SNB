@@ -93,6 +93,7 @@ namespace SNB.Web.Models
                 RoleId = userEntry.RoleId ?? 0;
                 ImageFile = userEntry.ImageFile;
                 UserType = userEntry.UserType;
+                NationalID = userEntry.NationalID;
             }
         }
 
@@ -125,7 +126,7 @@ namespace SNB.Web.Models
                 Address = Address,
                 Mobile = MobileNumber,
                 SupUser = false,
-                Status = UserType == DefaultValue.UserType.Tenant ? (int)EnumUserStatus.ApprovedUser : (int)EnumUserStatus.PendingUser,
+                Status = UserType == DefaultValue.UserType.Tenant ? (int)EnumUserStatus.Approved_User : (int)EnumUserStatus.Pending_User,
                 //CreatedBy = loggedInUserId,
                 ImageFile = ImagePath,
                 UserType = UserType,
@@ -165,7 +166,7 @@ namespace SNB.Web.Models
                 updateUser.ImageFile = "~/Uploads/" + finalFileName;
             }
 
-            _userService.EditUser(updateUser);
+            _userService.EditUserByUser(updateUser);
         }
     }
 }

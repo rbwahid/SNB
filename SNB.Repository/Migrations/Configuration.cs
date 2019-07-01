@@ -25,10 +25,10 @@ namespace SNB.Repository.Migrations
             #region role seed
             var seedRoles = new List<UserRole>
             {
-                new UserRole {RoleName = "Administrator", Status = (int)EnumUserRoleStatus.SuperAdministrator},
-                new UserRole {RoleName = "Admin", Status = (int)EnumUserRoleStatus.GeneralUser},
-                new UserRole {RoleName = DefaultValue.Role.Tenant, Status = (int)EnumUserRoleStatus.GeneralUser},
-                new UserRole {RoleName = DefaultValue.Role.Landlord, Status = (int)EnumUserRoleStatus.GeneralUser},
+                new UserRole {RoleName = "Administrator", Status = (int)EnumUserRoleStatus.Super_Administrator},
+                new UserRole {RoleName = "Admin", Status = (int)EnumUserRoleStatus.General_User},
+                new UserRole {RoleName = DefaultValue.Role.Tenant, Status = (int)EnumUserRoleStatus.General_User},
+                new UserRole {RoleName = DefaultValue.Role.Landlord, Status = (int)EnumUserRoleStatus.General_User},
             };
             seedRoles.ForEach(s => context.UserRoles.AddOrUpdate(r => r.RoleName, s));
             context.SaveChanges();
@@ -45,8 +45,8 @@ namespace SNB.Repository.Migrations
             #region user seed
             var users = new List<User>
             {
-                new User { FullName="Administrator",UserName = "admin",Password = "827ccb0eea8a706c4c34a16891f84e7b",RoleId = context.UserRoles.FirstOrDefault(x => x.RoleName == "Administrator").Id,SupUser = true,LastPassChangeDate = DateTime.Now,PasswordChangedCount=1,Status=(int)EnumUserStatus.SuperAdministrator}, //12345
-                new User { FullName="Development",UserName = "dev",Password = "827ccb0eea8a706c4c34a16891f84e7b",RoleId = context.UserRoles.FirstOrDefault(x => x.RoleName == "Administrator").Id,SupUser = true,LastPassChangeDate = DateTime.Now,PasswordChangedCount=1,Status=(int)EnumUserStatus.SuperAdministrator}, //12345
+                new User { FullName="Administrator",UserName = "admin",Password = "827ccb0eea8a706c4c34a16891f84e7b",RoleId = context.UserRoles.FirstOrDefault(x => x.RoleName == "Administrator").Id,SupUser = true,LastPassChangeDate = DateTime.Now,PasswordChangedCount=1,Status=(int)EnumUserStatus.Super_Administrator}, //12345
+                new User { FullName="Development",UserName = "dev",Password = "827ccb0eea8a706c4c34a16891f84e7b",RoleId = context.UserRoles.FirstOrDefault(x => x.RoleName == "Administrator").Id,SupUser = true,LastPassChangeDate = DateTime.Now,PasswordChangedCount=1,Status=(int)EnumUserStatus.Super_Administrator}, //12345
 
             };
             users.ForEach(s => context.Users.AddOrUpdate(u => u.UserName, s));

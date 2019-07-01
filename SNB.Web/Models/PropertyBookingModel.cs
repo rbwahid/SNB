@@ -12,13 +12,15 @@ namespace SNB.Web.Models
     public class PropertyBookingModel : PropertyBooking
     {
         private PropertyBookingService _propertyBookingService;
-        private int loggedInUserId;
         private SeatingAllocationService _seatingAllocationService;
+        private PropertyService _propertyService;
+        private int loggedInUserId;
 
         public PropertyBookingModel()
         {
             _propertyBookingService = new PropertyBookingService();
             _seatingAllocationService = new SeatingAllocationService();
+            _propertyService = new PropertyService();
         }
 
         public PropertyBookingModel(int id) : this()
@@ -42,7 +44,12 @@ namespace SNB.Web.Models
                 this.UpdatedAt = data.UpdatedAt;
             }
         }
-        
+
+        public Property GetPropertyById(int id)
+        {
+            return _propertyService.GetById(id);
+        }
+
         public IEnumerable<PropertyBooking> GetAll()
         {
             return _propertyBookingService.GetAll().ToList();
