@@ -112,7 +112,10 @@ namespace SNB.Web.Models
         {
             _propertyService.Disable(id, loggedInUserId);
         }
-
+        public void DeleteAttachmentFileImage(int id)
+        {
+            _propertyService.DeleteAttachmentFileImage(id, loggedInUserId);
+        }
         public void Enable(int id)
         {
             _propertyService.Disable(id, loggedInUserId);
