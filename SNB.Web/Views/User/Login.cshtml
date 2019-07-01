@@ -34,7 +34,7 @@
                     <div class="card mb-0">
                         <div class="card-body login-box">
                             <div class="text-center mb-3">
-                                <img class="img img-fluid" src="~/Content/images/logo.gif" /><br/><br />
+                                <img class="img img-fluid" src="@Url.Content("~/Content/images/logo.png")" /><br/><br />
                                 @*<h5 class="mb-0">Login to your account</h5>*@
                                 <span class="d-block text-muted">Your credentials</span>
                             </div>
@@ -69,10 +69,10 @@
                                 <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button>
                             </div>
 
-                            @*<div class="form-group">
-                                    <a href="#" class="btn btn-light btn-block">Sign up</a>
+                            <div class="form-group">
+                                    <a href="@Url.Action("UserRegistration","User")" class="btn btn-light btn-block">Sign up</a>
                                 </div>
-                                <span class="form-text text-center text-muted">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>*@
+                                <span class="form-text text-center text-muted">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
                         </div>
                     </div>
                 }

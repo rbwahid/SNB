@@ -1,0 +1,156 @@
+﻿@model IEnumerable<SNB.Entities.PropertyBooking>
+@using SNB.Common
+
+@using SNB.Web.Models
+
+
+@{
+    ViewBag.Title = "Property Booking";
+    var serial = 1;
+}
+
+<!-- Table with togglable columns -->
+<div class="card border-teal">
+    <div class="card-header header-elements-inline bg-teal">
+        <h5 class="card-title"><strong>Property Booking</strong></h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                @*<a href="@Url.Action("NewProperty","Property")" class="list-icons-item text-white" title="New Property"><i class="icon-plus3"></i></a>*@
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+
+    </div>
+    <table class="table table-togglable table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th data-toggle="true">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.PropertyName)</th>
+
+                @if (AuthenticatedUser.GetUserFromIdentity().UserType.ToLower() == DefaultValue.UserType.Landlord.ToLower())
+                {
+                    <th data-hide="phone,tablet">@Html.DisplayNameFor(model => model.SeatingAllocation.SeatingAllocationTitle)</th>
+                    <th data-hide="phone">@Html.DisplayNameFor(model => model.User.FullName)</th>
+                    <th data-hide="phone,tablet">@Html.DisplayNameFor(model => model.User.Mobile)</th>
+                }
+                else
+                {
+                    <th data-hide="phone">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.Address)</th>
+                    <th data-hide="phone">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.ContactNo)</th>
+                }
+                <th data-hide="phone,tablet">@Html.DisplayNameFor(model => model.SeatingAllocation.AvailableDate)</th>
+                <th data-hide="phone,tablet">@Html.DisplayName("Booked Date")</th>
+                <th data-hide="phone">Status</th>
+                <th class="text-center" style="width: 30px;">@*<i class="icon-menu-open2"></i>*@ Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="serial">@(serial++)</td>
+                <td>@item.SeatingAllocation.Property.PropertyName</td>
+
+                @if (AuthenticatedUser.GetUserFromIdentity().UserType.ToLower() == DefaultValue.UserType.Landlord.ToLower())
+                {
+                    <td>@item.SeatingAllocation.SeatingAllocationTitle</td>
+                    <td>@item.User.FullName</td>
+                    <td>@item.User.Mobile</td>
+                }
+                else
+                {
+                    <td>@item.SeatingAllocation.Property.Address</td>
+                    <td>@item.SeatingAllocation.Property.ContactNo</td>
+                }
+                <td>@item.SeatingAllocation.AvailableDate.Value.ToString("dd-MMM-yyyy")</td>
+                <td>@item.CreatedAt.Value.ToString("dd-MMM-yyyy")</td>
+                <td><span class="badge @CustomColor.PropertyBookingStatus(item.Status??0)">@((EnumPropertyBookingStatus)(item.Status ?? 0))</span></td>
+                <td class="text-center">
+                    <div class="list-icons">
+                        <div class="dropdown">
+                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" onclick="details_Data('@item.Id')" class="dropdown-item text-info"><i class="icon-eye"></i> Details</a>
+                                @*<a href="#" class="dropdown-item text-primary"><i class="icon-pencil7"></i> Edit</a>*@
+                                @if (AuthenticatedUser.GetUserFromIdentity().UserType.ToLower() == DefaultValue.UserType.Landlord.ToLower())
+                                {
+                                    <a href="#" onclick="pro_book_status('@item.Id','@((int)EnumPropertyBookingStatus.Accepted)')" class="dropdown-item text-success"><i class="icon-checkmark3"></i> Accept</a>
+                                    <a href="#" onclick="pro_book_status('@item.Id','@((int)EnumPropertyBookingStatus.Rejected)')" class="dropdown-item text-danger"><i class="icon-cross3"></i> Reject</a>
+                                    @*<a href="#" class="dropdown-item text-danger"><i class="icon-bin"></i> Delete</a>*@
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<!-- table with togglable columns -->
+<!-- Details Modal -->
+<div id="detailsModal" class="modal fade border-teal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-teal">
+            <div class="modal-header bg-teal-300">
+                <h5 class="modal-title">Property Booking Details</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body" id="detailsModalContent">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn bg-teal-600" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Details Modal -->
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/ajax-call")
+    @Scripts.Render("~/bundles/table-responsive")
+    <script>
+        function details_Data(id) {
+            var url = '@Url.Action("Details", "PropertyBooking")';
+            var paramData = { id: id };
+            ajaxCallModal(url, paramData, "renderPropertyBookingDetailsEntryLoad");
+        }
+
+        function renderPropertyBookingDetailsEntryLoad(data) {
+            $("#detailsModalContent").html(data);
+            $("#detailsModal").modal("show");
+        }
+
+        function pro_book_status(id, status) {
+            var url = '@Url.Action("PropertyBookingStatus", "PropertyBooking")';
+            var statusMsg = status == @((int)EnumPropertyBookingStatus.Accepted) ? "accept" : "reject";
+            var paramData = { id: id, status: status };
+            submit_status(url, paramData, statusMsg);
+        }
+
+        function submit_status(url, paramData, statusMsg) {
+            swalInit({
+                title: 'Are you sure want to ' + statusMsg + '?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm'
+            }).then(function (result) {
+                if (result.value) {
+                    ajaxCall(url, paramData, "renderPropertyBookingStatus");
+
+                }
+            });
+        }
+
+        function renderPropertyBookingStatus(data) {
+            location.reload();
+        }
+    </script>
+}

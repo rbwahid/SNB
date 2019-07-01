@@ -52,6 +52,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.NationalID)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.NationalID, new { @class = "form-control", @placeholder = "NID No" })
+                                @Html.ValidationMessageFor(model => model.NationalID)
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.MobileNumber)</label>
                             <div class="col-lg-6">
                                 @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholder = "Mobile Number" })

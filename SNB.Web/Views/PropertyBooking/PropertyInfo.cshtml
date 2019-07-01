@@ -1,0 +1,140 @@
+﻿@using SNB.Common
+@model SNB.Entities.Property
+@{
+    ViewBag.Title = "Property Info";
+    var saImgIndex = 0;
+}
+
+@section styles{
+    <style>
+        .sa-img {
+            max-height: 350px;
+        }
+    </style>
+}
+
+@{
+    var imageUrl = Model.ImageCollection.Any() ?
+        Model.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
+        "~/Content/images/home.png";
+
+    var seatType = String.Join(", ", Model.SeatingAllocationCollection
+            .Where(x => x.Status != (int) EnumSeatingAllocationStatus.Not_Available)
+            .Select(y => y.SeatingType).Distinct().Select(e => e.TypeName));
+
+}
+
+<div class="content">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+
+                <div class="">
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            @if (!Model.ImageCollection.Any())
+                            {
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            }
+                            @for (int i = 0; i < Model.ImageCollection.Count; i++)
+                            {
+                                <li data-target="#carouselExampleIndicators" data-slide-to="@i" class='@(i == 0 ? "active" : "")'></li>
+                            }
+                        </ol>
+                        <div class="carousel-inner">
+                            @if (!Model.ImageCollection.Any())
+                            {
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100 sa-img" src="@Url.Content(imageUrl)" alt="Image">
+                                </div>
+                            }
+                            @foreach (var saImg in Model.ImageCollection)
+                            {
+                                <div class="carousel-item @(saImgIndex++ == 0 ? "active" : "")">
+                                    <img class="d-block w-100 sa-img" src="@Url.Content(saImg.AttachementFile.FileLocation)" alt="Image">
+                                </div>
+                            }
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="mb-1">
+                        <h6 class="d-flex font-weight-semibold flex-nowrap mb-0">
+                            <a href="#" class="text-default mr-2 text-truncate">@Model.PropertyTitle</a>
+                            <span class="text-success ml-auto">@Model.PropertyType.TypeName</span>
+                        </h6>
+                    </div>
+                    <p class="mb-0 text-muted">@(seatType) available</p>
+                    <p class="mb-0 text-muted">@Model.ContactNo</p>
+                    <p class="mb-0 text-muted">@Model.Address</p>
+                    <p class="mb-0 text-muted">@(Model.Area?.AreaName + " " + Model.District?.DistrictName)</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title font-weight-bolder">Information</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Seat Title</th>
+                                    <th>Seating Type</th>
+                                    <th>Available Date</th>
+                                    <th>Rent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.SeatingAllocationCollection.Where(x => x.Status != (int)EnumSeatingAllocationStatus.Not_Available))
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="@Url.Action("PropertySeatingInfo","PropertyBooking", new { seatingAllocationId = item.Id })" class="text-info">@item.SeatingAllocationTitle <i class="icon-arrow-right5"></i></a>
+                                            
+                                        </td>
+                                        <td>@item.SeatingType.TypeName</td>
+                                        <td>@item.AvailableDate.Value.ToString("dd-MMM-yyyy")</td>
+                                        <td>@item.Rent.ToString("N0")</td>
+                                    </tr>
+                                }
+                            
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap-file")
+    @Scripts.Render("~/bundles/daterange-picker")
+
+}

@@ -17,6 +17,11 @@ function ajaxCall(url, paramData, callback, method, obj) {
             else if (callback == 'renderResetPassword') {
                 renderResetPassword(response);
             }
+            else if (callback == 'renderPropertyBookingStatus') {
+                renderPropertyBookingStatus(response);
+            }
+            else if (callback == 'renderUserApprove') {
+                renderUserApprove(response);
             else if (callback == 'renderDistrictEntryLoad') {
                 renderDistrictEntryLoad(response);
             }
@@ -49,6 +54,9 @@ function ajaxCallModal(url, paramData, callback, method, obj) {
             //callback(data);
             if (callback == 'renderUserDetailsEntryLoad') {
                 renderUserDetailsEntryLoad(response);
+            }
+            else if (callback == 'renderPropertyBookingDetailsEntryLoad') {
+                renderPropertyBookingDetailsEntryLoad(response);
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

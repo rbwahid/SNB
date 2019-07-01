@@ -18,6 +18,7 @@ namespace SNB.Web.Controllers
             _propertyModel = new PropertyModel();
         }
 
+        [Roles("Global_SupAdmin,Property_Report")]
         // GET: Property
         public ActionResult Index()
         {
@@ -25,6 +26,7 @@ namespace SNB.Web.Controllers
         }
 
         [HttpGet]
+        [Roles("Global_SupAdmin,Property_Create")]
         public ActionResult NewProperty()
         {
             _propertyModel.LoadAllListData();

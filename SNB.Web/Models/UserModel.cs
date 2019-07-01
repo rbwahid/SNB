@@ -75,5 +75,9 @@ namespace SNB.Web.Models
             return _userService.GetAllActions();
         }
 
+        public void UserApprovedStatus(int id)
+        {
+            _userService.UserApprovedStatus(id, AuthenticatedUser.GetUserFromIdentity().UserId);
+        }
     }
 }

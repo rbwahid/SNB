@@ -81,6 +81,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBookingRepository.cs" />
+    <Compile Include="PropertyBookingUnitOfWork.cs" />
     <Compile Include="PropertyRepository.cs" />
     <Compile Include="PropertyUnitOfWork.cs" />
     <Compile Include="Repository.cs" />

@@ -19,7 +19,7 @@ namespace SNB.Repository
 
         public IEnumerable<User> GetAllUsers()
         {
-            var users = _context.Users.Where(x => x.Status != (int)EnumUserStatus.SuperAdministrator && !x.IsDeleted).OrderBy(x => x.FullName);
+            var users = _context.Users.Where(x => x.Status != (int)EnumUserStatus.Super_Administrator && !x.IsDeleted).OrderByDescending(x => x.CreatedAt);
             return users;
         }
 
