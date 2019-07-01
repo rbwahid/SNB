@@ -176,10 +176,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PropertyBookingController.cs" />
+    <Compile Include="Controllers\PropertyTypeController.cs" />
+    <Compile Include="Controllers\SeatingTypeController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Controllers\SeatingAllocationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -191,6 +195,10 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\AreaModel.cs" />
+    <Compile Include="Models\SeatingTypeModel.cs" />
+    <Compile Include="Models\PropertyTypeModel.cs" />
+    <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\ExceptionLogger.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -2772,6 +2780,14 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\RoleList.cshtml" />
     <Content Include="Views\User\_Details.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
+    <Content Include="Views\District\_DistrictAddOdEdit.cshtml" />
+    <Content Include="Views\Area\Index.cshtml" />
+    <Content Include="Views\Area\_AreaAddOdEdit.cshtml" />
+    <Content Include="Views\PropertyType\_PropertyTypeAddOdEdit.cshtml" />
+    <Content Include="Views\PropertyType\Index.cshtml" />
+    <Content Include="Views\SeatingType\_SeatingTypeAddOdEdit.cshtml" />
+    <Content Include="Views\SeatingType\Index.cshtml" />
     <Content Include="Views\User\UserRegistration.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\_UserProfileInfo.cshtml" />

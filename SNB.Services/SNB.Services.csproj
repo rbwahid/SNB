@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaService.cs" />
+    <Compile Include="SeatingTypeService.cs" />
+    <Compile Include="PropertyTypeService.cs" />
+    <Compile Include="DistrictService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyBookingService.cs" />
     <Compile Include="PropertyService.cs" />
