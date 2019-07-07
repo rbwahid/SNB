@@ -2798,7 +2798,6 @@
     <Content Include="Views\SeatingAllocation\Index.cshtml" />
     <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
     <Content Include="Views\SeatingAllocation\Details.cshtml" />
-
     <Content Include="Views\Property\Edit.cshtml" />
     <Content Include="Views\SeatingAllocation\Edit.cshtml" />
     <Content Include="Views\Home\_PropertyBookingInfo.cshtml" />
@@ -2809,7 +2808,6 @@
     <Content Include="Views\ErrorHandler\ExceptionError.cshtml" />
     <Content Include="Views\PropertyBooking\_Details.cshtml" />
     <Content Include="Views\PropertyBooking\PropertyInfo.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
