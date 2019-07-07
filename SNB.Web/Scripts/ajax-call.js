@@ -22,18 +22,15 @@ function ajaxCall(url, paramData, callback, method, obj) {
             }
             else if (callback == 'renderUserApprove') {
                 renderUserApprove(response);
-            else if (callback == 'renderDistrictEntryLoad') {
+            } else if (callback == 'renderDistrictEntryLoad') {
                 renderDistrictEntryLoad(response);
-            }
-            else if (callback == 'renderAreaEntryLoad') {
+            } else if (callback == 'renderAreaEntryLoad') {
                 renderAreaEntryLoad(response);
-            }
-            else if (callback == 'renderPropertyTypeEntryLoad') {
+            } else if (callback == 'renderPropertyTypeEntryLoad') {
                 renderPropertyTypeEntryLoad(response);
-            }
-            else if (callback == 'renderSeatingTypeEntryLoad') {
+            } else if (callback == 'renderSeatingTypeEntryLoad') {
                 renderSeatingTypeEntryLoad(response);
-            }  
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(textStatus + "! please try again", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');

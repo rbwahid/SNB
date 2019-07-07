@@ -97,6 +97,14 @@ namespace SNB.Web.Models
 
         public int Update()
         {
+            if (this.ImageFileBases.Any())
+            {
+                var attachmentFiles = CustomFile.SaveImageFile(this.ImageFileBases, this.PropertyTitle, "Property");
+                if (attachmentFiles.Any())
+                {
+                    this.ImageCollection = attachmentFiles.Select(x => new PropertyImage() { AttachementFile = x }).ToList();
+                }
+            }
             return _propertyService.Update(this, loggedInUserId);
         }
 

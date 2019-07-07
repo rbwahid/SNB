@@ -16,6 +16,10 @@ namespace SNB.Repository
             _context = context;
         }
 
-       
+
+        public void AddRange(ICollection<SeatingAllocationImage> imageCollection)
+        {
+            _context.SeatingAllocationImages.AddRange(imageCollection);
+        }
     }
 }

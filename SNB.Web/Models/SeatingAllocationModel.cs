@@ -99,6 +99,14 @@ namespace SNB.Web.Models
 
         public int Update()
         {
+            if (this.ImageFileBases.Any())
+            {
+                var attachmentFiles = CustomFile.SaveImageFile(this.ImageFileBases, this.SeatingAllocationTitle, "SeatingAllocation");
+                if (attachmentFiles.Any())
+                {
+                    this.ImageCollection = attachmentFiles.Select(x => new SeatingAllocationImage() { AttachementFile = x }).ToList();
+                }
+            }
             return _seatingAllocationService.Update(this, loggedInUserId);
         }
 
