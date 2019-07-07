@@ -16,6 +16,10 @@ namespace SNB.Repository
             _context = context;
         }
 
-       
+
+        public void AddRange(ICollection<PropertyImage> imageCollection)
+        {
+            _context.PropertyImages.AddRange(imageCollection);
+        }
     }
 }

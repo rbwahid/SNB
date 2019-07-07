@@ -80,6 +80,13 @@ namespace SNB.Services
 
                 _propertyUnitOfWork.PropertyRepository.Update(existingEntity);
                 _propertyUnitOfWork.Save(loggedInUserId.ToString());
+
+                if (entity.ImageCollection.Any())
+                {
+                    entity.ImageCollection.ToList().ForEach(x => x.PropertyId = existingEntity.Id);
+                    _propertyImageUnitOfwork.PropertyImageRepository.AddRange(entity.ImageCollection);
+                    _propertyImageUnitOfwork.Save(loggedInUserId.ToString());
+                }
             }
 
             return entity.Id;
