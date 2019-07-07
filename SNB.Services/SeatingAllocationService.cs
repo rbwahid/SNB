@@ -86,6 +86,13 @@ namespace SNB.Services
 
                 _seatingAllocationUnitOfWork.SeatingAllocationRepository.Update(existingEntity);
                 _seatingAllocationUnitOfWork.Save(loggedInUserId.ToString());
+
+                if (entity.ImageCollection.Any())
+                {
+                    entity.ImageCollection.ToList().ForEach(x => x.SeatingAllocationId = existingEntity.Id);
+                    _seatingAllocationImageUnitOfwork.SeatingAllocationImageRepository.AddRange(entity.ImageCollection);
+                    _seatingAllocationImageUnitOfwork.Save(loggedInUserId.ToString());
+                }
             }
 
             return entity.Id;
