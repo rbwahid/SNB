@@ -6,10 +6,11 @@
         Model.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
         "~/Content/images/home.png";
 
-    var seatType = String.Join(", ", Model.SeatingAllocationCollection
-        .Where(x => x.Status != (int) EnumSeatingAllocationStatus.Not_Available)
-        .Select(y => y.SeatingType).Distinct().Select(e => e.TypeName));
+    //var seatType = String.Join(", ", Model.SeatingAllocationCollection
+    //    .Where(x => x.Status != (int) EnumSeatingAllocationStatus.Not_Available)
+    //    .Select(y => y.SeatingType).Distinct().Select(e => e.TypeName));
 
+    var seatType = "";
 }
 
 

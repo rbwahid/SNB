@@ -54,9 +54,6 @@
     <Compile Include="PropertyBooking.cs" />
     <Compile Include="PropertyImage.cs" />
     <Compile Include="PropertyType.cs" />
-    <Compile Include="SeatingAllocation.cs" />
-    <Compile Include="SeatingAllocationImage.cs" />
-    <Compile Include="SeatingType.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="UserRolePermission.cs" />

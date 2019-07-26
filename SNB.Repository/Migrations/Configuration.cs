@@ -65,14 +65,14 @@ namespace SNB.Repository.Migrations
             #endregion
 
             #region SeatingType seed
-            var seatingTypes = new List<SeatingType>
-            {
-                new SeatingType{ TypeName = "Apartment" },
-                new SeatingType{ TypeName = "Room" },
-                new SeatingType{ TypeName = "Seat" },
-            };
-            seatingTypes.ForEach(s => context.SeatingTypes.AddOrUpdate(u => u.TypeName, s));
-            context.SaveChanges();
+            //var seatingTypes = new List<SeatingType>
+            //{
+            //    new SeatingType{ TypeName = "Apartment" },
+            //    new SeatingType{ TypeName = "Room" },
+            //    new SeatingType{ TypeName = "Seat" },
+            //};
+            //seatingTypes.ForEach(s => context.SeatingTypes.AddOrUpdate(u => u.TypeName, s));
+            //context.SaveChanges();
             #endregion
 
             #region District seed

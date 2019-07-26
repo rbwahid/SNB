@@ -20,7 +20,7 @@ namespace SNB.Common
         Approved_User = 4,
     }
 
-    public enum EnumSeatingAllocationStatus
+    public enum EnumPropertyStatus
     {
         Available = 1,
         Not_Available = 2,

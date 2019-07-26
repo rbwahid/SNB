@@ -48,16 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SeatingAllocationImageUnitOfwork.cs" />
-    <Compile Include="SeatingAllocationImageRepository.cs" />
+    <Compile Include="Migrations\201907261726519_PropertyEntityUpdatedAndSAEntityRemoved.cs" />
+    <Compile Include="Migrations\201907261726519_PropertyEntityUpdatedAndSAEntityRemoved.Designer.cs">
+      <DependentUpon>201907261726519_PropertyEntityUpdatedAndSAEntityRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907262114324_PropertyTypeAndBookingEntityUpdated.cs" />
+    <Compile Include="Migrations\201907262114324_PropertyTypeAndBookingEntityUpdated.Designer.cs">
+      <DependentUpon>201907262114324_PropertyTypeAndBookingEntityUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="PropertyImageUnitOfwork.cs" />
     <Compile Include="PropertyImageRepository.cs" />
     <Compile Include="AuditLogRepository.cs" />
     <Compile Include="AreaRepository.cs" />
     <Compile Include="AttachmentFileRepository.cs" />
     <Compile Include="AttachmentFileUnitOfwork.cs" />
-    <Compile Include="SeatingTypeUnitOfwork.cs" />
-    <Compile Include="SeatingTypeRepository.cs" />
     <Compile Include="PropertyTypeUnitOfwork.cs" />
     <Compile Include="PropertyTypeRepository.cs" />
     <Compile Include="DistrictRepository.cs" />
@@ -92,8 +96,6 @@
     <Compile Include="PropertyRepository.cs" />
     <Compile Include="PropertyUnitOfWork.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="SeatingAllocationRepository.cs" />
-    <Compile Include="SeatingAllocationUnitOfWork.cs" />
     <Compile Include="SNBDbContext.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="UserRoleRepository.cs" />
@@ -129,6 +131,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906291053334_SeatingAllocationTitleAdd.resx">
       <DependentUpon>201906291053334_SeatingAllocationTitleAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907261726519_PropertyEntityUpdatedAndSAEntityRemoved.resx">
+      <DependentUpon>201907261726519_PropertyEntityUpdatedAndSAEntityRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907262114324_PropertyTypeAndBookingEntityUpdated.resx">
+      <DependentUpon>201907262114324_PropertyTypeAndBookingEntityUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

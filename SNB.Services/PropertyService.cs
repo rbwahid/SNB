@@ -1,4 +1,5 @@
-﻿using SNB.Entities;
+﻿using SNB.Common;
+using SNB.Entities;
 using SNB.Repository;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,13 @@ namespace SNB.Services
                 DistrictId = entity.DistrictId,
                 ImageCollection = entity.ImageCollection,
 
+                TotalSeat = entity.TotalSeat??1,
+                AvailableSeat = entity.AvailableSeat??1,
+                Description = entity.Description,
+                Rent = entity.Rent,
+                AvailableFrom = entity.AvailableFrom,
+                Status = (int)EnumPropertyStatus.Available,
+
                 CreatedBy = loggedInUserId,
             };
             _propertyUnitOfWork.PropertyRepository.Add(newEntity);
@@ -75,13 +83,19 @@ namespace SNB.Services
                 existingEntity.AreaId = entity.AreaId;
                 existingEntity.DistrictId = entity.DistrictId;
 
+                existingEntity.TotalSeat = entity.TotalSeat??1;
+                existingEntity.AvailableSeat = entity.AvailableSeat??1;
+                existingEntity.Description = entity.Description;
+                existingEntity.Rent = entity.Rent;
+                existingEntity.AvailableFrom = entity.AvailableFrom;
+
                 existingEntity.UpdatedBy = loggedInUserId;
                 existingEntity.UpdatedAt = DateTime.Now;
 
                 _propertyUnitOfWork.PropertyRepository.Update(existingEntity);
                 _propertyUnitOfWork.Save(loggedInUserId.ToString());
 
-                if (entity.ImageCollection.Any())
+                if (entity.ImageCollection != null && entity.ImageCollection.Any())
                 {
                     entity.ImageCollection.ToList().ForEach(x => x.PropertyId = existingEntity.Id);
                     _propertyImageUnitOfwork.PropertyImageRepository.AddRange(entity.ImageCollection);

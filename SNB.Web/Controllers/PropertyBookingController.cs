@@ -33,17 +33,17 @@ namespace SNB.Web.Controllers
         [AllowAnonymous]
         public ActionResult PropertyInfo(int propertyId)
         {
-            var property = _propertyBookingModel.GetPropertyById(propertyId);
-            return View(property);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult PropertySeatingInfo(int seatingAllocationId)
-        {
-            _propertyBookingModel.LoadSeatingAllocationBySAId(seatingAllocationId);
+            _propertyBookingModel.LoadPropertyById(propertyId);
             return View(_propertyBookingModel);
         }
+
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public ActionResult PropertySeatingInfo(int seatingAllocationId)
+        //{
+        //    _propertyBookingModel.LoadSeatingAllocationBySAId(seatingAllocationId);
+        //    return View(_propertyBookingModel);
+        //}
 
         [HttpGet]
         //[ValidateAntiForgeryToken]
@@ -56,7 +56,7 @@ namespace SNB.Web.Controllers
                 return RedirectToAction("PropertyBookingSuccess", "PropertyBooking");
             }
 
-            return RedirectToAction("PropertyBookingInfo", "PropertyBooking", new { seatingAllocationId = model.SeatingAllocationId});
+            return RedirectToAction("PropertyInfo", "PropertyBooking", new { propertyId = model.PropertyId });
         }
 
         [HttpGet]

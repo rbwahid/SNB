@@ -39,7 +39,17 @@ namespace SNB.Entities
         [ForeignKey("DistrictId")]
         public virtual District District { get; set; }
 
+        [Display(Name = "Total Seat")]
+        public int? TotalSeat { get; set; }
+        [Display(Name = "Available Seat")]
+        public int? AvailableSeat { get; set; }
+        public string Description { get; set; }
+        public double Rent { get; set; }
+        [Display(Name = "Available From")]
+        public DateTime? AvailableFrom { get; set; }
+        public int? Status { get; set; }
+
         public virtual ICollection<PropertyImage> ImageCollection { get; set; }
-        public virtual ICollection<SeatingAllocation> SeatingAllocationCollection { get; set; }
+        //public virtual ICollection<SeatingAllocation> SeatingAllocationCollection { get; set; }
     }
 }

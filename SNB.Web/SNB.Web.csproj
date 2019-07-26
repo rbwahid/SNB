@@ -183,9 +183,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PropertyBookingController.cs" />
     <Compile Include="Controllers\PropertyTypeController.cs" />
-    <Compile Include="Controllers\SeatingTypeController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
-    <Compile Include="Controllers\SeatingAllocationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomActionFilter.cs" />
     <Compile Include="CustomExceptionFilter.cs" />
@@ -196,7 +194,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\AreaModel.cs" />
-    <Compile Include="Models\SeatingTypeModel.cs" />
     <Compile Include="Models\PropertyTypeModel.cs" />
     <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\ExceptionLogger.cs" />
@@ -206,7 +203,6 @@
     <Compile Include="Models\PropertyBookingModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Models\RegistrationByUserModel.cs" />
-    <Compile Include="Models\SeatingAllocationModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRegisterModel.cs" />
@@ -2786,8 +2782,6 @@
     <Content Include="Views\Area\_AreaAddOdEdit.cshtml" />
     <Content Include="Views\PropertyType\_PropertyTypeAddOdEdit.cshtml" />
     <Content Include="Views\PropertyType\Index.cshtml" />
-    <Content Include="Views\SeatingType\_SeatingTypeAddOdEdit.cshtml" />
-    <Content Include="Views\SeatingType\Index.cshtml" />
     <Content Include="Views\User\UserRegistration.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\_UserProfileInfo.cshtml" />
@@ -2795,11 +2789,7 @@
     <Content Include="Views\Property\NewProperty.cshtml" />
     <Content Include="Views\Property\Details.cshtml" />
     <Content Include="Views\Property\Index.cshtml" />
-    <Content Include="Views\SeatingAllocation\Index.cshtml" />
-    <Content Include="Views\SeatingAllocation\NewSeatingAllocation.cshtml" />
-    <Content Include="Views\SeatingAllocation\Details.cshtml" />
     <Content Include="Views\Property\Edit.cshtml" />
-    <Content Include="Views\SeatingAllocation\Edit.cshtml" />
     <Content Include="Views\Home\_PropertyBookingInfo.cshtml" />
     <Content Include="Views\PropertyBooking\PropertySeatingInfo.cshtml" />
     <Content Include="Views\PropertyBooking\Index.cshtml" />

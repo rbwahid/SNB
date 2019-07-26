@@ -48,7 +48,8 @@ namespace SNB.Services
             var newEntity = new PropertyBooking()
             {
                 UserId = entity.UserId,
-                SeatingAllocationId = entity.SeatingAllocationId,
+                PropertyId = entity.PropertyId,
+                TotalSeat = entity.TotalSeat,
                 ConfirmDate = entity.ConfirmDate,
                 FromDate = entity.FromDate,
                 ToDate = entity.ToDate,
@@ -68,7 +69,8 @@ namespace SNB.Services
 
             if (existingEntity != null)
             {
-                existingEntity.SeatingAllocationId = entity.SeatingAllocationId;
+                existingEntity.PropertyId = entity.PropertyId;
+                existingEntity.TotalSeat = entity.TotalSeat;
                 existingEntity.ConfirmDate = entity.ConfirmDate;
                 existingEntity.FromDate = entity.FromDate;
                 existingEntity.ToDate = entity.ToDate;
@@ -106,9 +108,12 @@ namespace SNB.Services
                     entity.UpdatedAt = DateTime.Now;
                     entity.UpdatedBy = loggedInUserId;
 
-                    entity.SeatingAllocation.Status = (int)EnumSeatingAllocationStatus.Not_Available;
-                    entity.SeatingAllocation.UpdatedAt = DateTime.Now;
-                    entity.SeatingAllocation.UpdatedBy = loggedInUserId;
+                    // Property updated...
+                    entity.Property.AvailableSeat -= 1;
+                    if(entity.Property.AvailableSeat==0)
+                        entity.Property.Status = (int)EnumPropertyStatus.Not_Available;
+                    entity.Property.UpdatedAt = DateTime.Now;
+                    entity.Property.UpdatedBy = loggedInUserId;
                 }
                 else if (status == (int)EnumPropertyBookingStatus.Rejected)
                 {
@@ -117,6 +122,7 @@ namespace SNB.Services
                     entity.UpdatedBy = loggedInUserId;
                 }
 
+                _propertyBookingUnitOfWork.PropertyBookingRepository.Update(entity);
                 _propertyBookingUnitOfWork.Save(loggedInUserId.ToString());
             }
         }

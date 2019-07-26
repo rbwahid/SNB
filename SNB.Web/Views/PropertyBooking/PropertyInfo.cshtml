@@ -1,7 +1,6 @@
-﻿@using SNB.Common
-@model SNB.Entities.Property
+﻿@model SNB.Web.Models.PropertyBookingModel
 @{
-    ViewBag.Title = "Property Info";
+    ViewBag.Title = "Property Booking Info";
     var saImgIndex = 0;
 }
 
@@ -14,13 +13,9 @@
 }
 
 @{
-    var imageUrl = Model.ImageCollection.Any() ?
-        Model.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
+    var imageUrl = Model.Property.ImageCollection.Any() ?
+        Model.Property.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
         "~/Content/images/home.png";
-
-    var seatType = String.Join(", ", Model.SeatingAllocationCollection
-            .Where(x => x.Status != (int) EnumSeatingAllocationStatus.Not_Available)
-            .Select(y => y.SeatingType).Distinct().Select(e => e.TypeName));
 
 }
 
@@ -28,30 +23,30 @@
 
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card">
 
                 <div class="">
 
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @if (!Model.ImageCollection.Any())
+                            @if (!Model.Property.ImageCollection.Any())
                             {
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                             }
-                            @for (int i = 0; i < Model.ImageCollection.Count; i++)
+                            @for (int i = 0; i < Model.Property.ImageCollection.Count; i++)
                             {
                                 <li data-target="#carouselExampleIndicators" data-slide-to="@i" class='@(i == 0 ? "active" : "")'></li>
                             }
                         </ol>
                         <div class="carousel-inner">
-                            @if (!Model.ImageCollection.Any())
+                            @if (!Model.Property.ImageCollection.Any())
                             {
                                 <div class="carousel-item active">
                                     <img class="d-block w-100 sa-img" src="@Url.Content(imageUrl)" alt="Image">
                                 </div>
                             }
-                            @foreach (var saImg in Model.ImageCollection)
+                            @foreach (var saImg in Model.Property.ImageCollection)
                             {
                                 <div class="carousel-item @(saImgIndex++ == 0 ? "active" : "")">
                                     <img class="d-block w-100 sa-img" src="@Url.Content(saImg.AttachementFile.FileLocation)" alt="Image">
@@ -73,58 +68,79 @@
                 <div class="card-body">
                     <div class="mb-1">
                         <h6 class="d-flex font-weight-semibold flex-nowrap mb-0">
-                            <a href="#" class="text-default mr-2 text-truncate">@Model.PropertyTitle</a>
-                            <span class="text-success ml-auto">@Model.PropertyType.TypeName</span>
+                            <a href="#" class="text-default mr-2 text-truncate">@Model.Property.PropertyTitle</a>
+                            <span class="text-success ml-auto">@Model.Property.Rent.ToString("N0")</span>
                         </h6>
                     </div>
-                    <p class="mb-0 text-muted">@(seatType) available</p>
-                    <p class="mb-0 text-muted">@Model.ContactNo</p>
-                    <p class="mb-0 text-muted">@Model.Address</p>
-                    <p class="mb-0 text-muted">@(Model.Area?.AreaName + " " + Model.District?.DistrictName)</p>
+                    <p class="mb-0 text-muted">@Model.Property.PropertyType.TypeName</p>
+                    <p class="mb-0 text-muted">@Model.Property.ContactNo</p>
+                    <p class="mb-0 text-muted">@Model.Property.Address</p>
+                    <p class="mb-0 text-muted">@Model.Property.Description</p>
                 </div>
 
             </div>
         </div>
 
 
-        <div class="col-md-6">
-                
+        <div class="col-md-5">
+            @using (Html.BeginForm("PropertyBookingRequest", "PropertyBooking", FormMethod.Get))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.PropertyId)
+                @Html.ValidationSummary()
+
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title font-weight-bolder">Information</h5>
                     </div>
                     <div class="card-body">
-                        
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Seat Title</th>
-                                    <th>Seating Type</th>
-                                    <th>Available Date</th>
-                                    <th>Rent</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.SeatingAllocationCollection.Where(x => x.Status != (int)EnumSeatingAllocationStatus.Not_Available))
-                                {
-                                    <tr>
-                                        <td>
-                                            <a href="@Url.Action("PropertySeatingInfo","PropertyBooking", new { seatingAllocationId = item.Id })" class="text-info">@item.SeatingAllocationTitle <i class="icon-arrow-right5"></i></a>
-                                            
-                                        </td>
-                                        <td>@item.SeatingType.TypeName</td>
-                                        <td>@item.AvailableDate.Value.ToString("dd-MMM-yyyy")</td>
-                                        <td>@item.Rent.ToString("N0")</td>
-                                    </tr>
-                                }
-                            
-                            </tbody>
+                        @*<div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.PropertyTitle)</label>
+                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.PropertyTitle)</label>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.PropertyType.TypeName)</label>
+                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.PropertyType.TypeName)</label>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.ContactNo)</label>
+                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.ContactNo)</label>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.SeatingType.TypeName)</label>
+                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.SeatingType.TypeName)</label>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Rent)</label>
+                            <label class="col-md-8">@(Model.SeatingAllocation.Rent.ToString("N0"))</label>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.AvailableDate)</label>
+                            <label class="col-md-8">@(Model.SeatingAllocation.AvailableDate.Value.ToString("dd-MMM-yyyy"))</label>
+                        </div>*@
+                        <div class="form-group row mb-2">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.FromDate)</label>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "From Date" })
+                                @Html.ValidationMessageFor(model => model.FromDate)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.ToDate)</label>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "To Date" })
+                                @Html.ValidationMessageFor(model => model.ToDate)
+                            </div>
+                        </div>
 
-                        </table>
-
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="btn bg-blue btn-labeled btn-labeled-right ml-auto">
+                                <b><i class="icon-paperplane"></i></b> Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
-            
+            }
         </div>
     </div>
 

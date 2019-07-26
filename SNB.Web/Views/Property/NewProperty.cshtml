@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
 
                 <div class="row">
 
@@ -52,28 +52,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.ContactNo)</label>
-                            <div class="col-lg-6">
-                                @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @placeholder = "Contact No" })
-                                @Html.ValidationMessageFor(model => model.ContactNo)
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
-                            <div class="col-lg-6">
-                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
-                                @Html.ValidationMessageFor(model => model.Address)
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="form-group row">
                             <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyTypeId)</label>
                             <div class="col-lg-6">
                                 @Html.DropDownListFor(model => model.PropertyTypeId, new SelectList(Model.PropertyTypes, "Id", "TypeName"), "---Select---", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.PropertyTypeId)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.ContactNo)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @placeholder = "Contact No" })
+                                @Html.ValidationMessageFor(model => model.ContactNo)
                             </div>
                         </div>
                         <div class="form-group row">
@@ -90,6 +79,53 @@
                                 @Html.ValidationMessageFor(model => model.AreaId)
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.AvailableFrom)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.AvailableFrom, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "Available From" })
+                                @Html.ValidationMessageFor(model => model.AvailableFrom)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.TotalSeat)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.TotalSeat, new { @class = "form-control", @placeholder = "if seat exist" })
+                                @Html.ValidationMessageFor(model => model.TotalSeat)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.AvailableSeat)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.AvailableSeat, new { @class = "form-control", @placeholder = "if seat exist" })
+                                @Html.ValidationMessageFor(model => model.AvailableSeat)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Rent)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.Rent, new { @class = "form-control", @placeholder = "Rent" })
+                                @Html.ValidationMessageFor(model => model.Rent)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Description)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Description" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -111,6 +147,6 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap-file")
-
+    @Scripts.Render("~/bundles/daterange-picker")
 }
 
