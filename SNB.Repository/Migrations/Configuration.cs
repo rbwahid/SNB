@@ -56,9 +56,9 @@ namespace SNB.Repository.Migrations
             #region PropertyType seed
             var propertyTypes = new List<PropertyType>
             {
-                new PropertyType{ TypeName = "Apartment" },
-                new PropertyType{ TypeName = "Hostel" },
-                new PropertyType{ TypeName = "Mess" },
+                new PropertyType{ TypeName = "Apartment", IsSeatingType = false },
+                new PropertyType{ TypeName = "Hostel", IsSeatingType = true },
+                new PropertyType{ TypeName = "Mess", IsSeatingType = true },
             };
             propertyTypes.ForEach(s => context.PropertyTypes.AddOrUpdate(u => u.TypeName, s));
             context.SaveChanges();

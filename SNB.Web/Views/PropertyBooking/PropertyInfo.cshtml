@@ -17,6 +17,9 @@
         Model.Property.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
         "~/Content/images/home.png";
 
+
+    var seatCount = (Model.Property.PropertyType.IsSeatingType ? (Model.Property.AvailableSeat + " Seat") : "") + " Available";
+
 }
 
 <div class="content">
@@ -72,7 +75,7 @@
                             <span class="text-success ml-auto">@Model.Property.Rent.ToString("N0")</span>
                         </h6>
                     </div>
-                    <p class="mb-0 text-muted">@Model.Property.PropertyType.TypeName</p>
+                    <p class="mb-0 text-muted">@Model.Property.PropertyType.TypeName - @(seatCount)</p>
                     <p class="mb-0 text-muted">@Model.Property.ContactNo</p>
                     <p class="mb-0 text-muted">@Model.Property.Address</p>
                     <p class="mb-0 text-muted">@Model.Property.Description</p>

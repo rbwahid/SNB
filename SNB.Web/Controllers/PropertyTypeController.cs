@@ -65,11 +65,18 @@ namespace SNB.Web.Controllers
             new PropertyTypeModel().Delete(id);
             return Json(new { meg = "success" });
         }
+
+        #region Json Helper
         public JsonResult IsTypeNameExist(string TypeName, string InitialTypeName)
         {
             bool isNotExist = new PropertyTypeModel().IsTypeNameExist(TypeName, InitialTypeName);
             return Json(isNotExist, JsonRequestBehavior.AllowGet);
         }
-
+        public JsonResult IsSeatingType(int id)
+        {
+            var isSeatingType = new PropertyModel().IsSeatingType(id);
+            return Json(isSeatingType, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

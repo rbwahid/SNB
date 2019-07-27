@@ -65,6 +65,11 @@ namespace SNB.Web.Models
             }
         }
 
+        public bool IsSeatingType(int id)
+        {
+            return _propertyTypeService.GetPropertyTypeById(id).IsSeatingType;
+        }
+
         public void LoadAllListData()
         {
             this.Areas = _areaService.GetAllAreas().ToList();

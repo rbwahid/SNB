@@ -118,6 +118,10 @@ namespace SNB.Web
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                       "~/Scripts/common.js"));
 
+            // Common Script---
+            bundles.Add(new ScriptBundle("~/bundles/property").Include(
+                      "~/Scripts/Projects/Property.js"));
+
         }
     }
 }
