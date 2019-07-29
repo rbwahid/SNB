@@ -8,5 +8,6 @@ namespace SNB.Entities
     {
         [Required]
         public string TypeName { get; set; }
+        public bool IsSeatingType { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model SNB.Entities.Property
+@model SNB.Entities.Property
 @using SNB.Common
 
 @{
@@ -6,10 +6,11 @@
         Model.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
         "~/Content/images/home.png";
 
-    var seatType = String.Join(", ", Model.SeatingAllocationCollection
-        .Where(x => x.Status != (int) EnumSeatingAllocationStatus.Not_Available)
-        .Select(y => y.SeatingType).Distinct().Select(e => e.TypeName));
+    //var seatType = String.Join(", ", Model.SeatingAllocationCollection
+    //    .Where(x => x.Status != (int) EnumSeatingAllocationStatus.Not_Available)
+    //    .Select(y => y.SeatingType).Distinct().Select(e => e.TypeName));
 
+    var seatCount = (Model.PropertyType.IsSeatingType ? (Model.AvailableSeat + " Seat"):"") + " Available";
 }
 
 
@@ -34,7 +35,7 @@
                 @*<span class="text-success ml-auto">@Model.PropertyType.TypeName</span>*@
             </h6>
         </div>
-        <p class="mb-0 text-muted">&nbsp;</p>
+        <p class="mb-0 text-muted">@(seatCount)</p>
         <p class="mb-0 text-muted">@Model.Address</p>
         <p class="mb-0 text-muted">@(Model.Area?.AreaName + ", " + Model.District?.DistrictName)</p>
         @*<a href="@Url.Action("PropertyInfo","PropertyBooking", new {propertyId = Model.Id})" class="btn bg-indigo-400 btn-block mt-2"><i class="icon-link mr-2"></i> Find out more</a>*@

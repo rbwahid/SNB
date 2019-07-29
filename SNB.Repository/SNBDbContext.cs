@@ -29,9 +29,9 @@ namespace SNB.Repository
         public DbSet<Area> Areas { get; set; }
         public DbSet<AttachmentFile> AttachmentFiles { get; set; }
         public DbSet<PropertyImage> PropertyImages { get; set; }
-        public DbSet<SeatingAllocationImage> SeatingAllocationImages { get; set; }
-        public DbSet<SeatingType> SeatingTypes { get; set; }
-        public DbSet<SeatingAllocation> SeatingAllocations { get; set; }
+        //public DbSet<SeatingAllocationImage> SeatingAllocationImages { get; set; }
+        //public DbSet<SeatingType> SeatingTypes { get; set; }
+        //public DbSet<SeatingAllocation> SeatingAllocations { get; set; }
         public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyBooking> PropertyBookings { get; set; }

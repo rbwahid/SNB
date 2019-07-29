@@ -56,23 +56,23 @@ namespace SNB.Repository.Migrations
             #region PropertyType seed
             var propertyTypes = new List<PropertyType>
             {
-                new PropertyType{ TypeName = "Apartment" },
-                new PropertyType{ TypeName = "Hostel" },
-                new PropertyType{ TypeName = "Mess" },
+                new PropertyType{ TypeName = "Apartment", IsSeatingType = false },
+                new PropertyType{ TypeName = "Hostel", IsSeatingType = true },
+                new PropertyType{ TypeName = "Mess", IsSeatingType = true },
             };
             propertyTypes.ForEach(s => context.PropertyTypes.AddOrUpdate(u => u.TypeName, s));
             context.SaveChanges();
             #endregion
 
             #region SeatingType seed
-            var seatingTypes = new List<SeatingType>
-            {
-                new SeatingType{ TypeName = "Apartment" },
-                new SeatingType{ TypeName = "Room" },
-                new SeatingType{ TypeName = "Seat" },
-            };
-            seatingTypes.ForEach(s => context.SeatingTypes.AddOrUpdate(u => u.TypeName, s));
-            context.SaveChanges();
+            //var seatingTypes = new List<SeatingType>
+            //{
+            //    new SeatingType{ TypeName = "Apartment" },
+            //    new SeatingType{ TypeName = "Room" },
+            //    new SeatingType{ TypeName = "Seat" },
+            //};
+            //seatingTypes.ForEach(s => context.SeatingTypes.AddOrUpdate(u => u.TypeName, s));
+            //context.SaveChanges();
             #endregion
 
             #region District seed

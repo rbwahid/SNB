@@ -30,6 +30,8 @@ function ajaxCall(url, paramData, callback, method, obj) {
                 renderPropertyTypeEntryLoad(response);
             } else if (callback == 'renderSeatingTypeEntryLoad') {
                 renderSeatingTypeEntryLoad(response);
+            } else if (callback == 'renderPropertyTypeIsSeatingType') {
+                renderPropertyTypeIsSeatingType(response);
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

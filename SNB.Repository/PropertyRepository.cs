@@ -25,9 +25,9 @@ namespace SNB.Repository
 
         public IEnumerable<Property> GetAvailableProperty()
         {
-            return _context.SeatingAllocations.Where(x => !x.IsDeleted && 
-                    x.Status != (int)EnumSeatingAllocationStatus.Not_Available)
-                .Select(y => y.Property).Distinct().OrderByDescending(y => y.CreatedAt);
+            return _context.Properties.Where(x => !x.IsDeleted && 
+                    x.Status != (int)EnumPropertyStatus.Not_Available)
+                    .Distinct().OrderByDescending(y => y.CreatedAt);
         }
     }
 }

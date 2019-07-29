@@ -12,14 +12,14 @@ namespace SNB.Web.Models
     public class PropertyBookingModel : PropertyBooking
     {
         private PropertyBookingService _propertyBookingService;
-        private SeatingAllocationService _seatingAllocationService;
+        //private SeatingAllocationService _seatingAllocationService;
         private PropertyService _propertyService;
         private int loggedInUserId;
 
         public PropertyBookingModel()
         {
             _propertyBookingService = new PropertyBookingService();
-            _seatingAllocationService = new SeatingAllocationService();
+            //_seatingAllocationService = new SeatingAllocationService();
             _propertyService = new PropertyService();
         }
 
@@ -31,8 +31,9 @@ namespace SNB.Web.Models
                 this.Id = data.Id;
                 this.UserId = data.UserId;
                 this.User = data.User;
-                this.SeatingAllocationId = data.SeatingAllocationId;
-                this.SeatingAllocation = data.SeatingAllocation;
+                this.PropertyId = data.PropertyId;
+                this.Property = data.Property;
+                this.TotalSeat = data.TotalSeat;
                 this.ConfirmDate = data.ConfirmDate;
                 this.FromDate = data.FromDate;
                 this.ToDate = data.ToDate;
@@ -82,20 +83,28 @@ namespace SNB.Web.Models
         {
             loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
             this.UserId = AuthenticatedUser.GetUserFromIdentity().UserId;
+            this.TotalSeat = 1;
             return _propertyBookingService.Add(this, loggedInUserId);
         }
 
         public int Update()
         {
             loggedInUserId = AuthenticatedUser.GetUserFromIdentity().UserId;
+            this.TotalSeat = 1;
             return _propertyBookingService.Update(this, loggedInUserId);
         }
 
-        public void LoadSeatingAllocationBySAId(int seatingAllocationId)
+        public void LoadPropertyById(int propertyId)
         {
-            this.SeatingAllocationId = seatingAllocationId;
-            this.SeatingAllocation = _seatingAllocationService.GetById(seatingAllocationId);
+            this.Property = this.GetPropertyById(propertyId);
+            this.PropertyId = this.Property.Id;
         }
+
+        //public void LoadSeatingAllocationBySAId(int seatingAllocationId)
+        //{
+        //    this.SeatingAllocationId = seatingAllocationId;
+        //    this.SeatingAllocation = _seatingAllocationService.GetById(seatingAllocationId);
+        //}
 
         public void Disable(int id)
         {

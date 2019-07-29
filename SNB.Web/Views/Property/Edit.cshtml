@@ -4,6 +4,10 @@
     ViewBag.Title = "New Property";
 }
 
+@{
+    var seatFieldShowHide = Model.PropertyType.IsSeatingType ? "show" : "none";
+
+}
 
 <!-- Content area -->
 <div class="content">
@@ -25,14 +29,14 @@
             <div class="card-body">
 
                 <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <input type="file" id="ImageFileBase" name="ImageFileBases" class="file-input" multiple="multiple" accept="image/*" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
-                                </div>
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <input type="file" id="ImageFileBase" name="ImageFileBases" class="file-input" multiple="multiple" accept="image/*" data-browse-class="btn btn-primary btn-block" data-show-remove="false" data-show-caption="false" data-show-upload="false" data-fouc>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 <div class="row">
 
@@ -52,31 +56,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyTypeId)</label>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(model => model.PropertyTypeId, new SelectList(Model.PropertyTypes, "Id", "TypeName"), new { @class = "form-control", id = "propertyType" })
+                                @Html.ValidationMessageFor(model => model.PropertyTypeId)
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.ContactNo)</label>
                             <div class="col-lg-6">
                                 @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @placeholder = "Contact No" })
                                 @Html.ValidationMessageFor(model => model.ContactNo)
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
-                            <div class="col-lg-6">
-                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
-                                @Html.ValidationMessageFor(model => model.Address)
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        
-                        <div class="form-group row">
-                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.PropertyTypeId)</label>
-                            <div class="col-lg-6">
-                                @Html.DropDownListFor(model => model.PropertyTypeId, new SelectList(Model.PropertyTypes, "Id", "TypeName"), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.PropertyTypeId)
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.DistrictId)</label>
                             <div class="col-lg-6">
@@ -91,6 +83,56 @@
                                 @Html.ValidationMessageFor(model => model.AreaId)
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.AvailableFrom)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.AvailableFrom, string.Format("{0:dd-MMM-yyyy}", Model.AvailableFrom), new { @class = "form-control daterange-singledate", @placeholder = "Available From" })
+                                @Html.ValidationMessageFor(model => model.AvailableFrom)
+                            </div>
+                        </div>
+
+                        <div id="seatFieldShowHide" style="display:@seatFieldShowHide;">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.TotalSeat)</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(model => model.TotalSeat, new { @class = "form-control", @placeholder = "If seat exist" })
+                                    @Html.ValidationMessageFor(model => model.TotalSeat)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.AvailableSeat)</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(model => model.AvailableSeat, new { @class = "form-control", @placeholder = "If seat exist" })
+                                    @Html.ValidationMessageFor(model => model.AvailableSeat)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Rent)</label>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(model => model.Rent, new { @class = "form-control", @placeholder = "Rent" })
+                                @Html.ValidationMessageFor(model => model.Rent)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-3">@Html.DisplayNameFor(model => model.Description)</label>
+                            <div class="col-lg-6">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Description" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -112,6 +154,20 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap-file")
+    @Scripts.Render("~/bundles/daterange-picker")
+    @Scripts.Render("~/bundles/ajax-call")
+    @Scripts.Render("~/bundles/property")
+
+    <script>
+        $(document).ready(function () {
+            $('#propertyType').on('change', function () {
+                var propertyTypeId = $(this).val();
+                var url = '@Url.Action("IsSeatingType","PropertyType")';
+                var paramData = { id : propertyTypeId }
+                ajaxCall(url, paramData, 'renderPropertyTypeIsSeatingType');
+            });
+        });
+    </script>
 
 }
 

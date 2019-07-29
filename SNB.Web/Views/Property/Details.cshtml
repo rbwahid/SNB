@@ -36,25 +36,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.ContactNo)</label>
-                        <div class="col-lg-6">
-                            @Html.DisplayFor(model => model.ContactNo)
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
-                        <div class="col-lg-6">
-                            @Html.DisplayFor(model => model.Address)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="form-group row">
                         <label class="col-lg-3">@Html.DisplayNameFor(model => model.PropertyTypeId)</label>
                         <div class="col-lg-6">
                             @Html.DisplayFor(model => model.PropertyType.TypeName)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.ContactNo)</label>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(model => model.ContactNo)
                         </div>
                     </div>
                     <div class="form-group row">
@@ -69,55 +59,47 @@
                             @Html.DisplayFor(model => model.Area.AreaName)
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.Address)</label>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(model => model.Address)
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Seat Allocation -->
-            <div class="card">
-                <div class="card-header bg-white header-elements-inline">
-                    <h6 class="card-title">Seat Allocation</h6>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.AvailableFrom)</label>
+                        <div class="col-lg-6">
+                            @(Model.AvailableFrom?.ToString("dd-MMM-yyyy"))
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.TotalSeat)</label>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(model => model.TotalSeat)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.AvailableSeat)</label>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(model => model.AvailableSeat)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.Rent)</label>
+                        <div class="col-lg-6">
+                            @(Model.Rent.ToString("N0"))
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.Description)</label>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(model => model.Description)
+                        </div>
+                    </div>
                 </div>
-                <table class="table table-striped media-library">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Seat Title</th>
-                            <th>Seating Type</th>
-                            <th>Available Date</th>
-                            <th>Rent</th>
-                            <th>Status</th>
-                            <th class="text-center">@*<i class="icon-menu-open2"></i>*@Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (!Model.SeatingAllocationCollection.Any())
-                        {
-                            <tr><td colspan="6" class="text-center">Don't have any seat allocation</td></tr>
-                        }
-                        else
-                        {
-                            foreach (var item in Model.SeatingAllocationCollection)
-                             {
-                                 <tr>
-                                     <td class="serial">@(serial++)</td>
-                                     <td>@item.SeatingAllocationTitle</td>
-                                     <td>@item.SeatingType.TypeName</td>
-                                     <td>@item.AvailableDate.Value.ToString("dd-MMM-yyyy")</td>
-                                     <td>@item.Rent.ToString("N2")</td>
-                                     <td><span class="badge @CustomColor.SeatingAllocationStatus(item.Status??0) ">@((EnumSeatingAllocationStatus)item.Status)</span></td>
-                                     <td class="text-center">
-                                         <div class="list-icons">
-                                             <a href="@Url.Action("Details","SeatingAllocation", new { id = item.Id })" class="list-icons-item text-info"><i class="icon-eye"></i></a>
-                                             
-                                         </div>
-                                     </td>
-                                 </tr>
-                             }
-                        }
-                    </tbody>
-                </table>
             </div>
-            <!-- /Seat Allocation -->
 
             <!-- Media library -->
             <div class="card">

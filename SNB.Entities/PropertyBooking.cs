@@ -11,10 +11,11 @@ namespace SNB.Entities
     [Table("PropertyBookings")]
     public class PropertyBooking:AuditableEntity
     {
-        [Display(Name= "Seating Allocation")]
-        public int SeatingAllocationId { get; set; }
-        [ForeignKey("SeatingAllocationId")]
-        public virtual SeatingAllocation SeatingAllocation { get; set; }
+        [Display(Name= "Property")]
+        public int PropertyId { get; set; }
+        [ForeignKey("PropertyId")]
+        public virtual Property Property { get; set; }
+        public int? TotalSeat { get; set; }
         [Display(Name = "User")]
         public int UserId { get; set; }
         [ForeignKey("UserId")]
@@ -26,6 +27,7 @@ namespace SNB.Entities
         public DateTime? FromDate { get; set; }
         [Display(Name = "To Date")]
         public DateTime? ToDate { get; set; }
+        public string Remarks { get; set; }
 
         public int? Status { get; set; }
 

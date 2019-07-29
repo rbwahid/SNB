@@ -8,13 +8,13 @@ namespace SNB.Common
 {
     public static class CustomColor
     {
-        public static string SeatingAllocationStatus(int value)
+        public static string PropertyStatus(int value)
         {
             switch (value)
             {
-                case (int)EnumSeatingAllocationStatus.Available:
+                case (int)EnumPropertyStatus.Available:
                     return "badge-success";
-                case (int)EnumSeatingAllocationStatus.Not_Available:
+                case (int)EnumPropertyStatus.Not_Available:
                     return "badge-warning";
                 default:
                     return "badge-secondary";

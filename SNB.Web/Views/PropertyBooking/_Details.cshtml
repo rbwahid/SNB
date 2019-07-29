@@ -16,15 +16,15 @@
 
     <div class="col-md-6">
         <div class="form-group row details-row">
-            <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.PropertyTitle)</label>
+            <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.PropertyTitle)</label>
             <div class="col-lg-6">
-                @Html.DisplayFor(model => model.SeatingAllocation.Property.PropertyTitle)
+                @Html.DisplayFor(model => model.Property.PropertyTitle)
             </div>
         </div>
         <div class="form-group row details-row">
-            <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.PropertyName)</label>
+            <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.PropertyName)</label>
             <div class="col-lg-6">
-                @Html.DisplayFor(model => model.SeatingAllocation.Property.PropertyName)
+                @Html.DisplayFor(model => model.Property.PropertyName)
             </div>
         </div>
         @if (AuthenticatedUser.GetUserFromIdentity().UserType.ToLower() == DefaultValue.UserType.Landlord.ToLower())
@@ -51,21 +51,21 @@
         else
         {
             <div class="form-group row details-row">
-                <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.District.DistrictName)</label>
+                <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.District.DistrictName)</label>
                 <div class="col-lg-6">
-                    @Html.DisplayFor(model => model.SeatingAllocation.Property.District.DistrictName)
+                    @Html.DisplayFor(model => model.Property.District.DistrictName)
                 </div>
             </div>
             <div class="form-group row details-row">
-                <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.Address)</label>
+                <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.Address)</label>
                 <div class="col-lg-6">
-                    @Html.DisplayFor(model => model.SeatingAllocation.Property.Address)
+                    @Html.DisplayFor(model => model.Property.Address)
                 </div>
             </div>
             <div class="form-group row details-row">
-                <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.Property.ContactNo)</label>
+                <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.ContactNo)</label>
                 <div class="col-lg-6">
-                    @Html.DisplayFor(model => model.SeatingAllocation.Property.ContactNo)
+                    @Html.DisplayFor(model => model.Property.ContactNo)
                 </div>
             </div>
         }
@@ -79,7 +79,7 @@
 
     <div class="col-md-6">
 
-        <div class="form-group row details-row">
+        @*<div class="form-group row details-row">
             <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.SeatingAllocationTitle)</label>
             <div class="col-lg-6">
                 @Html.DisplayFor(model => model.SeatingAllocation.SeatingAllocationTitle)
@@ -90,23 +90,23 @@
             <div class="col-lg-6">
                 @Html.DisplayFor(model => model.SeatingAllocation.SeatingType.TypeName)
             </div>
-        </div>
+        </div>*@
         <div class="form-group row details-row">
-            <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.Description)</label>
+            <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.Description)</label>
             <div class="col-lg-6">
-                @Html.DisplayFor(model => model.SeatingAllocation.Description)
+                @Html.DisplayFor(model => model.Property.Description)
             </div>
         </div>
         <div class="form-group row details-row">
-            <label class="col-lg-4">@Html.DisplayNameFor(model => model.SeatingAllocation.AvailableDate)</label>
+            <label class="col-lg-4">@Html.DisplayNameFor(model => model.Property.AvailableFrom)</label>
             <div class="col-lg-6">
-                @(Model.SeatingAllocation.AvailableDate != null ? Model.SeatingAllocation.AvailableDate.Value.ToString("dd-MMM-yyyy") : "")
+                @(Model.Property.AvailableFrom?.ToString("dd-MMM-yyyy"))
             </div>
         </div>
         <div class="form-group row details-row">
             <label class="col-lg-4">@Html.DisplayNameFor(model => model.ConfirmDate)</label>
             <div class="col-lg-6">
-                @(Model.ConfirmDate != null ? Model.ConfirmDate.Value.ToString("dd-MMM-yyyy") : "")
+                @(Model.ConfirmDate?.ToString("dd-MMM-yyyy"))
             </div>
         </div>
         <div class="form-group row details-row">

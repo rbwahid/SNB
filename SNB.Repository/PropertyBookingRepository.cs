@@ -24,7 +24,7 @@ namespace SNB.Repository
 
         public IEnumerable<PropertyBooking> GetByLandlordId(int id)
         {
-            return base.GetAll(x => !x.IsDeleted && x.SeatingAllocation.Property.UserId == id);
+            return base.GetAll(x => !x.IsDeleted && x.Property.UserId == id);
         }
 
         public IEnumerable<PropertyBooking> GetByTenantId(int id)
