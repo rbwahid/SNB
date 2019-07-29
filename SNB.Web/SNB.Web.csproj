@@ -225,6 +225,8 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\no-image.jpg" />
     <Content Include="Content\images\panel_bg.png" />
+    <Content Include="Content\images\slider-1.jpg" />
+    <Content Include="Content\images\slider-2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2702,7 +2704,10 @@
     <Content Include="Plugins\global_assets\scss\_bootstrap\_utilities.scss" />
     <Content Include="Plugins\global_assets\scss\_bootstrap\_variables.scss" />
     <Content Include="Plugins\global_assets\scss\_config.scss" />
-    <Content Include="ConnectionStrings.config" />
+    <Content Include="ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
