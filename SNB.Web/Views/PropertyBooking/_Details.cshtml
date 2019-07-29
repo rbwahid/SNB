@@ -124,7 +124,13 @@
         <div class="form-group row details-row">
             <label class="col-lg-4">@Html.DisplayName("Booked Date")</label>
             <div class="col-lg-6">
-                @(Model.CreatedAt != null ? Model.CreatedAt.Value.ToString("dd-MMM-yyyy") : "")
+                @(Model.CreatedAt?.ToString("dd-MMM-yyyy"))
+            </div>
+        </div>
+        <div class="form-group row details-row">
+            <label class="col-lg-4">@Html.DisplayNameFor(model => model.Remarks)</label>
+            <div class="col-lg-6">
+                @Html.DisplayFor(model => model.Remarks)
             </div>
         </div>
     </div>

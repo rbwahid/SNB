@@ -74,18 +74,23 @@
                             @(Model.AvailableFrom?.ToString("dd-MMM-yyyy"))
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.TotalSeat)</label>
-                        <div class="col-lg-6">
-                            @Html.DisplayFor(model => model.TotalSeat)
+                    @if (Model.PropertyType.IsSeatingType)
+                    {
+                        <div>
+                            <div class="form-group row">
+                                <label class="col-lg-3">@Html.DisplayNameFor(model => model.TotalSeat)</label>
+                                <div class="col-lg-6">
+                                    @Html.DisplayFor(model => model.TotalSeat)
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3">@Html.DisplayNameFor(model => model.AvailableSeat)</label>
+                                <div class="col-lg-6">
+                                    @Html.DisplayFor(model => model.AvailableSeat)
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3">@Html.DisplayNameFor(model => model.AvailableSeat)</label>
-                        <div class="col-lg-6">
-                            @Html.DisplayFor(model => model.AvailableSeat)
-                        </div>
-                    </div>
+                    }
                     <div class="form-group row">
                         <label class="col-lg-3">@Html.DisplayNameFor(model => model.Rent)</label>
                         <div class="col-lg-6">

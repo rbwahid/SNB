@@ -70,6 +70,7 @@
                     <p class="mb-0 text-muted">@Model.Property.PropertyType.TypeName - @(seatCount)</p>
                     <p class="mb-0 text-muted">@Model.Property.ContactNo</p>
                     <p class="mb-0 text-muted">@Model.Property.Address</p>
+                    <p class="mb-0 text-muted">@(Model.Property.Area?.AreaName + ", " + Model.Property.District?.DistrictName)</p>
                     <p class="mb-0 text-muted">@Model.Property.Description</p>
                 </div>
 
@@ -90,41 +91,48 @@
                     </div>
                     <div class="card-body">
                         @*<div class="form-group row mb-2">
-                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.PropertyTitle)</label>
-                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.PropertyTitle)</label>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.PropertyType.TypeName)</label>
-                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.PropertyType.TypeName)</label>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.ContactNo)</label>
-                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.ContactNo)</label>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.SeatingType.TypeName)</label>
-                            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.SeatingType.TypeName)</label>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Rent)</label>
-                            <label class="col-md-8">@(Model.SeatingAllocation.Rent.ToString("N0"))</label>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.AvailableDate)</label>
-                            <label class="col-md-8">@(Model.SeatingAllocation.AvailableDate.Value.ToString("dd-MMM-yyyy"))</label>
-                        </div>*@
+            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.PropertyTitle)</label>
+            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.PropertyTitle)</label>
+        </div>
+        <div class="form-group row mb-2">
+            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.PropertyType.TypeName)</label>
+            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.PropertyType.TypeName)</label>
+        </div>
+        <div class="form-group row mb-2">
+            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Property.ContactNo)</label>
+            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.Property.ContactNo)</label>
+        </div>
+        <div class="form-group row mb-2">
+            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.SeatingType.TypeName)</label>
+            <label class="col-md-8">@Html.DisplayFor(x => x.SeatingAllocation.SeatingType.TypeName)</label>
+        </div>
+        <div class="form-group row mb-2">
+            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.Rent)</label>
+            <label class="col-md-8">@(Model.SeatingAllocation.Rent.ToString("N0"))</label>
+        </div>
+        <div class="form-group row mb-2">
+            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.SeatingAllocation.AvailableDate)</label>
+            <label class="col-md-8">@(Model.SeatingAllocation.AvailableDate.Value.ToString("dd-MMM-yyyy"))</label>
+        </div>*@
                         <div class="form-group row mb-2">
                             <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.FromDate)</label>
                             <div class="col-md-8">
-                                @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "From Date" })
+                                @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "From Date", @autocomplete="off" })
                                 @Html.ValidationMessageFor(model => model.FromDate)
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.ToDate)</label>
                             <div class="col-md-8">
-                                @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "To Date" })
+                                @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control daterange-singledate", @Value = "", @placeholder = "To Date", @autocomplete = "off" })
                                 @Html.ValidationMessageFor(model => model.ToDate)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 font-weight-bold">@Html.DisplayNameFor(x => x.Remarks)</label>
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", @placeholder = "if you have any query please tell us" })
+                                @Html.ValidationMessageFor(model => model.Remarks)
                             </div>
                         </div>
 

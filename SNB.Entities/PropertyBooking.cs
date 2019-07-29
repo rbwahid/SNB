@@ -27,6 +27,7 @@ namespace SNB.Entities
         public DateTime? FromDate { get; set; }
         [Display(Name = "To Date")]
         public DateTime? ToDate { get; set; }
+        [Display(Name = "Comments")]
         public string Remarks { get; set; }
 
         public int? Status { get; set; }

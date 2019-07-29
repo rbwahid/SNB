@@ -104,10 +104,10 @@ namespace SNB.Web.Models
             new RoleTaskCheckBoxModel {PermissionName="Property_Delete", PermissionCategory = "Property"},
             new RoleTaskCheckBoxModel {PermissionName="Property_Report", PermissionCategory = "Property"},
             
-            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Create", PermissionCategory = "Seating_Allocation"},
-            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Edit", PermissionCategory = "Seating_Allocation"},
-            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Delete", PermissionCategory = "Seating_Allocation"},
-            new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Report", PermissionCategory = "Seating_Allocation"},
+            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Create", PermissionCategory = "Seating_Allocation"},
+            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Edit", PermissionCategory = "Seating_Allocation"},
+            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Delete", PermissionCategory = "Seating_Allocation"},
+            //new RoleTaskCheckBoxModel {PermissionName="Seating_Allocation_Report", PermissionCategory = "Seating_Allocation"},
             
             new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Request", PermissionCategory = "Property_Booking"},
             new RoleTaskCheckBoxModel {PermissionName="Property_Booking_Edit", PermissionCategory = "Property_Booking"},

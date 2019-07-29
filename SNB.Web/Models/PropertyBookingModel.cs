@@ -37,6 +37,7 @@ namespace SNB.Web.Models
                 this.ConfirmDate = data.ConfirmDate;
                 this.FromDate = data.FromDate;
                 this.ToDate = data.ToDate;
+                this.Remarks = data.Remarks;
 
                 this.Status = data.Status;
                 this.CreatedBy = data.CreatedBy;

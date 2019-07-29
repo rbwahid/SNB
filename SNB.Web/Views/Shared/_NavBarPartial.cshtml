@@ -318,7 +318,7 @@
     }
 
 
-    @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Seating_Allocation_Report"))
+    @*@if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Seating_Allocation_Report"))
     {
         <li class="nav-item">
             <a href="@Url.Action("Index", "SeatingAllocation")" class="navbar-nav-link">
@@ -326,7 +326,7 @@
                 Seating Allocation
             </a>
         </li>
-    }
+    }*@
 
 
     @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Property_Booking_Report"))
