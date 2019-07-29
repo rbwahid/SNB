@@ -53,6 +53,7 @@ namespace SNB.Services
                 ConfirmDate = entity.ConfirmDate,
                 FromDate = entity.FromDate,
                 ToDate = entity.ToDate,
+                Remarks = entity.Remarks,
 
                 Status = (int)EnumPropertyBookingStatus.Pending,
                 CreatedBy = loggedInUserId,
@@ -74,6 +75,7 @@ namespace SNB.Services
                 existingEntity.ConfirmDate = entity.ConfirmDate;
                 existingEntity.FromDate = entity.FromDate;
                 existingEntity.ToDate = entity.ToDate;
+                existingEntity.Remarks = entity.Remarks;
 
                 existingEntity.UpdatedBy = loggedInUserId;
                 existingEntity.UpdatedAt = DateTime.Now;
