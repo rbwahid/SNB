@@ -4,14 +4,6 @@
     var saImgIndex = 0;
 }
 
-@section styles{
-    <style>
-        .sa-img {
-            max-height: 350px;
-        }
-    </style>
-}
-
 @{
     var imageUrl = Model.Property.ImageCollection.Any() ?
         Model.Property.ImageCollection.FirstOrDefault().AttachementFile.FileLocation :
