@@ -100,3 +100,12 @@ textarea {
 .text-base-color {
     color: #009f8b;
 }
+.navbar-light {
+    background-color: #009f8b;
+}
+    .navbar-light .navbar-nav-link, .navbar-light .navbar-nav-link:focus {
+        color: #fff;
+    }
+    .navbar-light .navbar-nav-link:hover {
+        color: #c9de7b;
+    }
